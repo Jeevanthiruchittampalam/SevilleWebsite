@@ -12,7 +12,6 @@ import EnergyChart from '../images/insights/energy_usage.png';
 import InquiriesChart from '../images/insights/inquiries_by_channel.png';
 import InsightsBg from '../images/insights.jpg';
 
-import RentTrendChart from '../components/Charts/RentTrendChart';
 
 
 
@@ -73,10 +72,6 @@ export default function InsightsPage() {
       </section>
 
    
-
-<section className="py-16 px-6 max-w-6xl mx-auto space-y-12">
-  <RentTrendChart />
-</section>
 
       
 
