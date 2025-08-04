@@ -19,7 +19,7 @@ export default function BlogPage() {
       title: '3-Month Landlord Eviction Notice Rule Now Active',
       content: [
         "As of June 18, landlords in British Columbia can now issue 'landlord-use' eviction notices with only three months’ warning, down from the previous four-month requirement. This means if a landlord intends to use the property themselves or for close family, tenants now have one month less to vacate.",
-        "While some landlords welcome the added flexibility, tenant advocates argue the shorter timeline creates hardship for renters in a market with limited vacancy and rising rents. The BC government has defended the move as part of broader tenancy reform meant to increase fairness and efficiency in disputes."
+        "While some landlords welcomeeee the added flexibility, tenant advocates argue the shorter timeline creates hardship for renters in a market with limited vacancy and rising rents. The BC government has defended the move as part of broader tenancy reform meant to increase fairness and efficiency in disputes."
       ]
     },
     {
