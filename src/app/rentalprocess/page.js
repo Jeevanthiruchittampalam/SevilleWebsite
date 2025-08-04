@@ -35,7 +35,7 @@ export default function RentalProcessPage() {
       >
         <div className="bg-black bg-opacity-50 p-8 rounded-lg max-w-3xl">
           <h1 className="text-5xl font-bold mb-2">Rental Process</h1>
-          <p className="text-base italic">We're here to guide you every step of the way.</p>
+          <p className="text-base italic">we&apos; here to guide you every step of the way.</p>
         </div>
       </div>
 
@@ -44,7 +44,7 @@ export default function RentalProcessPage() {
         <section className="space-y-6 text-center">
           <h2 className="text-3xl font-semibold">Getting Started</h2>
           <p className="text-gray-700 text-lg">
-            Whether you're searching for your next home or a commercial lease, we’ve made the process seamless.
+            Whether you&apos; searching for your next home or a commercial lease, we’ve made the process seamless.
           </p>
 
           <ul className="mt-6 space-y-4 text-left text-gray-800">

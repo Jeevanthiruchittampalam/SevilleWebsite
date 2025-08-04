@@ -71,8 +71,8 @@ export default function CareersPage() {
           Work with Purpose. Grow with Seville.
         </h2>
         <p className="text-gray-700 text-lg">
-          Here at Seville Management Ltd., we combine real estate tradition with innovation. Whether you're
-          maintaining our buildings, supporting tenants, or developing new tools, you'll be part of a team that values
+          Here at Seville Management Ltd., we combine real estate tradition with innovation. Whether you&apos;re
+          maintaining our buildings, supporting tenants, or developing new tools, you&apos;ll be part of a team that values
           integrity, collaboration, and long-term growth.
         </p>
       </section>

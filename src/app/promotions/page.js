@@ -42,8 +42,8 @@ export default function PromotionsPage() {
             Current Offers
           </h2>
           <p className="text-gray-600 text-lg">
-            Our promotions reflect our commitment to both value and lifestyle. Whether you're looking for
-            flexibility, incentives, or long-term benefits, we have options to suit every tenant's goals.
+            Our promotions reflect our commitment to both value and lifestyle. Whether you&apos;re looking for
+            flexibility, incentives, or long-term benefits, we have options to suit every tenant&apos;s goals.
           </p>
         </section>
 

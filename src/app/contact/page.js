@@ -60,7 +60,7 @@ export default function ContactPage() {
         </div>
 
         <div className="text-gray-600 text-sm text-center mt-10">
-          Whether you're a current tenant, prospective client, or vendor — we’re ready to support you.
+          Whether you&apos;re a current tenant, prospective client, or vendor — we’re ready to support you.
         </div>
       </main>
 
