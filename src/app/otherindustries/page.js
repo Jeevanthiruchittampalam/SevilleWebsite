@@ -38,7 +38,7 @@ export default function OtherIndustriesPage() {
       {/* Industries Section */}
       <main className="flex-grow px-6 py-16 max-w-5xl mx-auto">
         <section className="space-y-6 text-center">
-          <h2 className="text-3xl font-semibold text-gray-900">Industries We're Interested In</h2>
+          <h2 className="text-3xl font-semibold text-gray-900">Industries We&apos; Interested In</h2>
           <p className="text-gray-700 max-w-3xl mx-auto">
             While real estate and development remain our core focus, Seville Management Ltd. is actively exploring
             strategic investments in adjacent and emerging industries. We believe innovation often comes from the edge.

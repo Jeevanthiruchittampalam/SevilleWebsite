@@ -64,7 +64,7 @@ export default function TechnologyPage() {
         </section>
 
         <section>
-          <h2 className="text-3xl font-semibold text-gray-900 mb-4">What We're Exploring Next</h2>
+          <h2 className="text-3xl font-semibold text-gray-900 mb-4">What we&apos; Exploring Next</h2>
           <ul className="list-disc list-inside text-gray-700 space-y-2">
             {research.map((item, idx) => (
               <li key={idx}>{item}</li>
