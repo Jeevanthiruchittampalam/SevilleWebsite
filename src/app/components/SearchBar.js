@@ -19,21 +19,18 @@ export default function SearchBar() {
   };
 
   const handleSearch = () => {
-    if (!selectedCity || !selectedBedroom || !price) return;
-
-    const query = new URLSearchParams({
-      city: selectedCity,
-      bedrooms: selectedBedroom === 'Studio' ? 'S' : selectedBedroom,
-      price: price.toString(),
-    }).toString();
-
-    router.push(`/forrent?${query}`);
+    const params = new URLSearchParams();
+    if (selectedCity) params.append('city', selectedCity);
+    if (selectedBedroom) params.append('bedrooms', selectedBedroom === 'Studio' ? 'S' : selectedBedroom);
+    params.append('price', price);
+    router.push(`/forrent?${params.toString()}`);
   };
 
   return (
-    <div className="mt-10 bg-white rounded shadow-lg w-full max-w-5xl px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div className="mt-10 bg-white rounded shadow-lg w-full max-w-5xl px-6 py-4 flex flex-col md:flex-row flex-wrap items-center justify-between gap-4">
+      
       {/* City Dropdown */}
-      <div className="relative border-r pr-4 w-full md:w-auto">
+      <div className="relative border-r pr-4">
         <button
           onClick={() => setDropdownOpen(!dropdownOpen)}
           className="flex items-center gap-2 font-semibold text-black"
@@ -60,8 +57,8 @@ export default function SearchBar() {
       </div>
 
       {/* Bedrooms */}
-      <div className="flex items-center gap-2 flex-wrap border-r pr-4">
-        <span className="text-xs font-bold text-gray-500">BEDROOMS</span>
+      <div className="flex items-center gap-2 border-r pr-4 flex-wrap">
+        <span className="text-xs font-bold text-gray-500 whitespace-nowrap">BEDROOMS</span>
         {bedrooms.map((b, i) => (
           <button
             key={i}
@@ -88,7 +85,7 @@ export default function SearchBar() {
           step="50"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
-          className="w-full md:w-40 accent-yellow-400"
+          className="w-40 accent-yellow-400"
         />
       </div>
 
@@ -96,7 +93,7 @@ export default function SearchBar() {
       <div className="w-full md:w-auto">
         <button
           onClick={handleSearch}
-          className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-4 py-2 rounded w-full whitespace-nowrap"
+          className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-4 py-2 rounded w-full md:w-auto whitespace-nowrap"
         >
           Find an Apartment
         </button>
