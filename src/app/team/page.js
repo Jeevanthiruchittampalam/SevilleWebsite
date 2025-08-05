@@ -14,8 +14,9 @@ export default function TeamPage() {
     },
     {
       name: 'Palas Kabir',
-      title: 'Financial Manager',
+      title: 'Financial Controller',
       email: 'palas@sevilleinvestments.ca',
+      image: '/images/teammembers/palas.jpeg',
     },
     {
       name: 'Gierly Magrata',
@@ -41,6 +42,8 @@ export default function TeamPage() {
       name: 'Jeevan Thiruchittampalam',
       title: 'Developer',
       email: 'jeevan@sevilleinvestments.ca',
+      bio: 'Jeevan is a full-stack developer with a passion for real estate innovation. He specializes in building scalable tools that streamline operations and enhance user experience. His work blends creativity with precision to support Seville’s digital growth.',
+      image: '/images/teammembers/jeevan.jpeg',
     },
   ];
 
@@ -51,7 +54,7 @@ export default function TeamPage() {
       <section className="py-20 px-6 max-w-6xl mx-auto text-center">
         <h1 className="text-4xl font-bold mb-4">Our Team</h1>
         <p className="text-lg text-gray-600 mb-12">
-          Meet the professionals behind Seville Management Ltd.
+          Meet the professionals behind Seville Investments
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
@@ -61,7 +64,7 @@ export default function TeamPage() {
               className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 text-left hover:shadow-md transition-shadow"
             >
               <Image
-                src="/images/dummyheadshot.png" // ✅ from /public
+                src={member.image || '/images/dummyheadshot.png'}
                 alt={member.name}
                 className="rounded-full mb-4 mx-auto"
                 width={120}

@@ -58,10 +58,10 @@ export default function Home() {
         }}
       >
         <h1 className="text-4xl font-bold text-white mb-4 drop-shadow-lg">
-          Welcome to Seville Management Ltd.
+          Welcome to Seville Investments
         </h1>
         <p className="text-lg text-white max-w-xl drop-shadow-md mb-8">
-          We manage and develop exceptional living spaces with care and expertise.
+          We develop and manage exceptional living spaces with care and expertise.
         </p>
 
         <SearchBar />

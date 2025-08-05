@@ -57,7 +57,7 @@ export default function PressAndMediaPage() {
           <p className="text-gray-500 text-sm mb-2">📅 July 27, 2025</p>
           <h2 className="text-2xl font-semibold mb-4">Seville Pledges Immediate Support for Kingsway Tenants</h2>
           <p className="text-gray-700 mb-3">
-            Following the July 22nd fire at 3925 Kingsway, Seville Management Ltd. has pledged to relocate affected
+            Following the July 22nd fire at 3925 Kingsway, Seville Investments has pledged to relocate affected
             tenants into temporary accommodations across other managed properties. The company has activated internal
             relocation teams and partnered with local contractors to expedite support.
           </p>

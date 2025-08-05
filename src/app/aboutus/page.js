@@ -24,7 +24,7 @@ export default function AboutPage() {
       {/* Main Content */}
       <main className="flex-grow px-6 py-12 max-w-4xl mx-auto text-center sm:text-left">
         <p className="text-lg mb-6">
-          <strong>Seville Management Ltd.</strong> is a proudly Canadian, medium-scale management company
+          <strong>Seville Investments</strong> is a proudly Canadian, medium-scale management company
           rooted in the heart of the Lower Mainland. Founded in <strong>1983</strong>, we have grown over
           the decades into a diversified organization focused on:
         </p>

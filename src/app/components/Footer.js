@@ -26,7 +26,7 @@ export default function Footer() {
         ))}
       </div>
       <div className="text-center mt-6 text-xs text-gray-600">
-        &copy; {new Date().getFullYear()} Seville Management Ltd. All rights reserved.
+        &copy; {new Date().getFullYear()} Seville Investments All rights reserved.
       </div>
     </footer>
   );

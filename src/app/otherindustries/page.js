@@ -41,7 +41,7 @@ export default function OtherIndustriesPage() {
         <section className="space-y-6 text-center">
           <h2 className="text-3xl font-semibold text-gray-900">Industries We&apos; Interested In</h2>
           <p className="text-gray-700 max-w-3xl mx-auto">
-            While real estate and development remain our core focus, Seville Management Ltd. is actively exploring
+            While real estate and development remain our core focus, Seville Investments is actively exploring
             strategic investments in adjacent and emerging industries. We believe innovation often comes from the edge.
           </p>
           <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8 text-left">

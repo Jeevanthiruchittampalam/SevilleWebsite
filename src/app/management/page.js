@@ -69,7 +69,7 @@ export default function ManagementPage() {
       <section className="px-6 py-16 max-w-5xl mx-auto space-y-6">
         <h2 className="text-3xl font-semibold text-gray-900 text-center">Our Management Approach</h2>
         <p className="text-gray-700 leading-relaxed">
-          At Seville Management Ltd., we deliver bespoke asset management that combines technology, transparency,
+          At Seville Investments, we deliver bespoke asset management that combines technology, transparency,
           and tenant-first service. From leasing to financial reporting, maintenance to strategic planning—we cover
           every aspect with excellence.
         </p>

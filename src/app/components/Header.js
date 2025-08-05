@@ -9,7 +9,7 @@ const sectorItems = [
   { name: 'Investments and Loans', href: '/investmentsandloans' },
   { name: 'Development', href: '/developments' },
   { name: 'Technology', href: '/technology' },
-  { name: 'Management', href: '/management' },
+  { name: 'Asset Management', href: '/management' },
   { name: 'Properties', href: '/properties' },
   { name: 'Other Industries', href: '/otherindustries' },
 ];
