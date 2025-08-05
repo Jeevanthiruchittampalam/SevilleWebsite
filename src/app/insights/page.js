@@ -15,7 +15,7 @@ export default function InsightsPage() {
       >
         <div className="bg-black bg-opacity-50 p-10 rounded-lg max-w-3xl">
           <h1 className="text-5xl font-bold mb-2">Insights & Analytics</h1>
-          <p className="text-lg italic">Real data powering real decisions at Seville Investments</p>
+          <p className="text-lg italic">Data Collected at Seville Investments. Last Updated August 5, 2025</p>
         </div>
       </div>
 

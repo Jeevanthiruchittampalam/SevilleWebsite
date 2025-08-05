@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -40,10 +41,22 @@ const cities = ['Vancouver', 'Victoria', 'Burnaby', 'Surrey', 'North Vancouver',
 const bedroomOptions = ['S', '1', '2'];
 
 export default function BlogPage() {
+  const searchParams = useSearchParams();
+
   const [selectedCity, setSelectedCity] = useState('');
   const [selectedBedroom, setSelectedBedroom] = useState('');
   const [priceLimit, setPriceLimit] = useState(4000);
   const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    const cityParam = searchParams.get('city');
+    const bedroomParam = searchParams.get('bedrooms');
+    const priceParam = searchParams.get('price');
+
+    if (cityParam) setSelectedCity(cityParam);
+    if (bedroomParam) setSelectedBedroom(bedroomParam);
+    if (priceParam) setPriceLimit(parseInt(priceParam));
+  }, [searchParams]);
 
   const togglePopup = () => setShowPopup(!showPopup);
 
@@ -135,9 +148,7 @@ export default function BlogPage() {
             </p>
 
             {/* Info Header */}
-            <p className="text-xl font-semibold text-black mb-4">
-              {listing.info}
-            </p>
+            <p className="text-xl font-semibold text-black mb-4">{listing.info}</p>
 
             {/* Images */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
@@ -154,9 +165,7 @@ export default function BlogPage() {
             </div>
 
             {/* Description */}
-            <p className="text-gray-700 leading-relaxed mb-4 whitespace-pre-line">
-              {listing.description}
-            </p>
+            <p className="text-gray-700 leading-relaxed mb-4 whitespace-pre-line">{listing.description}</p>
 
             <button
               onClick={togglePopup}
@@ -173,17 +182,20 @@ export default function BlogPage() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-8 rounded shadow-lg max-w-sm w-full text-center">
             <h3 className="text-xl font-semibold mb-4">How To Apply</h3>
-            <p className="mb-3 text-gray-700">
-              Step 1: Download the application form
-            </p>
+            <p className="mb-3 text-gray-700">Step 1: Download the application form</p>
             <a
               href="/3925Kingsway_ApplicationTenancy.pdf"
               download
               className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 font-medium"
             >
-              Download PDF 
+              Download PDF
             </a>
-            <p className="mt-3 text-gray-700">Step 2: Email it to <a href="mailto:gierly@sevilleinvestments.ca" className="underline text-blue-500">gierly@sevilleinvestments.ca</a></p>
+            <p className="mt-3 text-gray-700">
+              Step 2: Email it to{' '}
+              <a href="mailto:gierly@sevilleinvestments.ca" className="underline text-blue-500">
+                gierly@sevilleinvestments.ca
+              </a>
+            </p>
             <button
               onClick={togglePopup}
               className="mt-4 bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded"

@@ -1,8 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function SearchBar() {
+  const router = useRouter();
+
   const cities = ['Vancouver', 'Victoria', 'Burnaby', 'Surrey', 'North Vancouver', 'Toronto', 'London'];
   const bedrooms = ['Studio', '1', '2', '3'];
 
@@ -15,11 +18,22 @@ export default function SearchBar() {
     setSelectedBedroom(selectedBedroom === bedroom ? null : bedroom);
   };
 
+  const handleSearch = () => {
+    if (!selectedCity || !selectedBedroom || !price) return;
+
+    const query = new URLSearchParams({
+      city: selectedCity,
+      bedrooms: selectedBedroom === 'Studio' ? 'S' : selectedBedroom,
+      price: price.toString(),
+    }).toString();
+
+    router.push(`/forrent?${query}`);
+  };
+
   return (
     <div className="mt-10 bg-white rounded shadow-lg w-full max-w-5xl px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
-      
       {/* City Dropdown */}
-      <div className="relative border-r pr-4">
+      <div className="relative border-r pr-4 w-full md:w-auto">
         <button
           onClick={() => setDropdownOpen(!dropdownOpen)}
           className="flex items-center gap-2 font-semibold text-black"
@@ -46,14 +60,16 @@ export default function SearchBar() {
       </div>
 
       {/* Bedrooms */}
-      <div className="flex items-center gap-3 border-r pr-4">
+      <div className="flex items-center gap-2 flex-wrap border-r pr-4">
         <span className="text-xs font-bold text-gray-500">BEDROOMS</span>
         {bedrooms.map((b, i) => (
           <button
             key={i}
             onClick={() => toggleBedroom(b)}
             className={`px-2 py-1 text-sm rounded ${
-              selectedBedroom === b ? 'bg-yellow-400 text-black font-semibold' : 'text-black hover:bg-gray-100'
+              selectedBedroom === b
+                ? 'bg-yellow-400 text-black font-semibold'
+                : 'text-black hover:bg-gray-100'
             }`}
           >
             {b}
@@ -62,7 +78,7 @@ export default function SearchBar() {
       </div>
 
       {/* Price Range */}
-      <div className="flex flex-col items-center gap-1 border-r pr-4 w-full md:w-auto">
+      <div className="flex flex-col items-center border-r pr-4 w-full md:w-auto">
         <span className="text-xs font-bold text-gray-500">PRICE RANGE</span>
         <span className="text-black text-sm font-semibold">${price}</span>
         <input
@@ -72,14 +88,19 @@ export default function SearchBar() {
           step="50"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
-          className="w-40 accent-yellow-400"
+          className="w-full md:w-40 accent-yellow-400"
         />
       </div>
 
       {/* Search Button */}
-      <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-4 py-2 rounded whitespace-nowrap">
-        Find an Apartment
-      </button>
+      <div className="w-full md:w-auto">
+        <button
+          onClick={handleSearch}
+          className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-4 py-2 rounded w-full whitespace-nowrap"
+        >
+          Find an Apartment
+        </button>
+      </div>
     </div>
   );
 }
