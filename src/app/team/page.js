@@ -61,7 +61,7 @@ export default function TeamPage() {
               className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 text-left hover:shadow-md transition-shadow"
             >
               <Image
-                src="/images/Properties2.jpg" // ✅ from /public
+                src="/images/dummyheadshot.png" // ✅ from /public
                 alt={member.name}
                 className="rounded-full mb-4 mx-auto"
                 width={120}

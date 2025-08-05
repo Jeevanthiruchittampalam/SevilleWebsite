@@ -22,7 +22,15 @@ export default function Home() {
   const [activeSector, setActiveSector] = useState(sectors[0]);
   const [userSelected, setUserSelected] = useState(false);
 
-  // Auto-cycle sectors every 6 seconds unless user has clicked
+  // ✅ Preload all background images
+  useEffect(() => {
+    Object.values(sectorBackgrounds).forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
+  // Auto-cycle sectors every 6 seconds unless user clicked
   useEffect(() => {
     if (userSelected) return;
     const interval = setInterval(() => {

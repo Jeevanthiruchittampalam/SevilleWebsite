@@ -40,6 +40,7 @@ export default function Header() {
           <Link href="/" className="hover:underline">Home</Link>
           <Link href="/forrent" className="hover:underline">For Rent</Link>
           <Link href="/forsale" className="hover:underline">For Sale</Link>
+          <Link href="/map" className="hover:underline">Map</Link>
 
           {/* Dropdown (Click only) */}
           <div className="relative">
@@ -86,6 +87,7 @@ export default function Header() {
           <Link href="/" className="block py-2">Home</Link>
           <Link href="/forrent" className="block py-2">For Rent</Link>
           <Link href="/forsale" className="block py-2">For Sale</Link>
+          <Link href="/map" className="block py-2">Map</Link>
           <div>
             <button
               onClick={() => setGroupOpen(!groupOpen)}
