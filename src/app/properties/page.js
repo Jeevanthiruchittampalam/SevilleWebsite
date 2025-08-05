@@ -2,11 +2,8 @@
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import PropsBg from '../images/bcwinter1.jpg';
-import Image from 'next/image';
 
-// Placeholder for property thumbnail if desired
-const DummyThumbnail = '/images/property-placeholder.jpg';
+const DummyThumbnail = '/images/PropertiesC.jpg';
 
 const properties = [
   {
@@ -69,7 +66,7 @@ export default function PropertiesPage() {
       {/* Hero Section */}
       <div
         className="w-full h-[500px] bg-cover bg-center flex items-center justify-center text-white text-center"
-        style={{ backgroundImage: `url(${PropsBg.src})` }}
+        style={{ backgroundImage: "url('/images/bcwinter1.jpg')" }}
       >
         <div className="bg-black bg-opacity-50 p-8 rounded-lg max-w-3xl">
           <h1 className="text-5xl font-bold mb-2">Our Properties Portfolio</h1>
@@ -84,14 +81,12 @@ export default function PropertiesPage() {
             key={idx}
             className="bg-white rounded-2xl border border-gray-200 shadow-md hover:shadow-lg transition-shadow p-6 flex flex-col"
           >
-            {/* Optional image */}
+            {/* Property Image */}
             <div className="mb-4">
-              <Image
+              <img
                 src={DummyThumbnail}
                 alt={prop.name}
-                width={400}
-                height={250}
-                className="rounded-lg object-cover w-full"
+                className="rounded-lg object-cover w-full h-48"
               />
             </div>
             <h2 className="text-xl font-semibold mb-2 text-gray-900">{prop.name}</h2>

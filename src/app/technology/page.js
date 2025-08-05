@@ -2,7 +2,7 @@
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import TechBg from '../images/technologypage1.jpg';
+
 
 export default function TechnologyPage() {
   const investments = [
@@ -33,7 +33,7 @@ export default function TechnologyPage() {
       {/* Hero */}
       <div
         className="w-full h-[500px] bg-cover bg-center flex items-center justify-center text-white text-center"
-        style={{ backgroundImage: `url(${TechBg.src})` }}
+        style={{ backgroundImage: "url('/images/technologypage1.jpg')" }}
       >
         <div className="bg-black bg-opacity-50 p-10 rounded-lg max-w-3xl">
           <h1 className="text-4xl sm:text-5xl font-bold mb-2">Technology & Innovation</h1>

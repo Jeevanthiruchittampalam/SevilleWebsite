@@ -2,7 +2,6 @@
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import ManagementBg from '../images/YELLOWUNUSED.jpg';
 
 export default function ManagementPage() {
   const assetTypes = [
@@ -30,7 +29,8 @@ export default function ManagementPage() {
       {/* Hero Section */}
       <div
         className="w-full h-[500px] bg-cover bg-center flex items-center justify-center text-white"
-        style={{ backgroundImage: `url(${ManagementBg.src})` }}
+        style={{ backgroundImage: "url('/images/YELLOWUNUSED.jpg')" }}
+
       >
         <div className="bg-black bg-opacity-50 p-10 rounded-lg max-w-3xl text-center">
           <h1 className="text-5xl font-bold mb-2">Property & Asset Management</h1>

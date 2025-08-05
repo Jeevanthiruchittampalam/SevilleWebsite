@@ -1,8 +1,6 @@
-// --- GroupWheel.js ---
-
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const sectors = [
   'Investments and Loans',
@@ -14,13 +12,35 @@ const sectors = [
 ];
 
 export default function GroupWheel({ activeSector, setActiveSector }) {
-  const circleDiameter = 360;
+  const [circleDiameter, setCircleDiameter] = useState(360);
+
+  // Dynamically adjust circle size based on window width
+  useEffect(() => {
+    const updateSize = () => {
+      const width = window.innerWidth;
+      if (width < 400) {
+        setCircleDiameter(240);
+      } else if (width < 640) {
+        setCircleDiameter(280);
+      } else {
+        setCircleDiameter(360);
+      }
+    };
+
+    updateSize(); // set on mount
+    window.addEventListener('resize', updateSize);
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+
   const radius = circleDiameter / 2;
   const labelRadius = radius + 28;
   const dotRadius = radius - 1;
 
   return (
-    <div className="relative w-full max-w-xl h-[440px] mx-auto mt-20">
+    <div
+      className="relative w-full mx-auto mt-20"
+      style={{ height: `${circleDiameter + 80}px`, maxWidth: `${circleDiameter + 80}px` }}
+    >
       {/* Main Circle */}
       <div
         className="absolute top-1/2 left-1/2 border border-white rounded-full"
@@ -32,7 +52,7 @@ export default function GroupWheel({ activeSector, setActiveSector }) {
       />
 
       {/* Center Text */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-xl font-bold tracking-widest text-center">
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-base sm:text-lg font-bold tracking-widest text-center">
         SECTORS
       </div>
 
@@ -67,7 +87,7 @@ export default function GroupWheel({ activeSector, setActiveSector }) {
 
             {/* Label */}
             <div
-              className="absolute text-center text-sm transition-all duration-300 whitespace-nowrap cursor-pointer"
+              className="absolute text-center text-[10px] sm:text-sm transition-all duration-300 whitespace-nowrap cursor-pointer"
               style={{
                 top: `calc(50% + ${labelY}px)`,
                 left: `calc(50% + ${labelX}px)`,

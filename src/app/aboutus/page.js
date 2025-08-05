@@ -2,8 +2,6 @@
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Image from 'next/image';
-import OrcaImage from '../images/orca1.jpg';
 
 export default function AboutPage() {
   return (
@@ -14,7 +12,7 @@ export default function AboutPage() {
       <div
         className="w-full h-64 bg-cover bg-center flex items-center justify-center text-white text-center"
         style={{
-          backgroundImage: `url(${OrcaImage.src})`,
+          backgroundImage: "url('/images/orca1.jpg')", // ✅ This is the correct way to use a public image
         }}
       >
         <div className="bg-black bg-opacity-50 p-6 rounded">

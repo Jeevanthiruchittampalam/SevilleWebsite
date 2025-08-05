@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import SevilleLogo from '../images/SevilleLogo1.png';
+import SevilleLogo from '../../../public/images/SevilleLogo1.png';
 
 const sectorItems = [
   { name: 'Investments and Loans', href: '/investmentsandloans' },

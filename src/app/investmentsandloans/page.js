@@ -3,9 +3,7 @@
 import { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Image from 'next/image';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
-import Bg from '../images/investmentspage1.jpg';
 
 const sectors = [
   { name: 'Residential Rentals', value: 35 },
@@ -33,7 +31,7 @@ export default function InvestmentsAndLoansPage() {
       {/* Hero */}
       <div
         className="w-full h-[500px] bg-cover bg-center flex items-center justify-center text-white text-center"
-        style={{ backgroundImage: `url(${Bg.src})` }}
+        style={{ backgroundImage: "url('/images/investmentspage1.jpg')" }}
       >
         <div className="bg-black bg-opacity-50 p-10 rounded-lg max-w-3xl">
           <h1 className="text-5xl font-bold mb-2">Investments & Loans</h1>

@@ -2,7 +2,7 @@
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import PromoBg from '../images/promotions.png'; // Rename your generated image to promotions.jpg
+ // Rename your generated image to promotions.jpg
 
 export default function PromotionsPage() {
   const promos = [
@@ -27,7 +27,7 @@ export default function PromotionsPage() {
       {/* Hero */}
       <div
         className="w-full h-[600px] bg-cover bg-center flex items-center justify-center text-white text-center"
-        style={{ backgroundImage: `url(${PromoBg.src})` }}
+        style={{ backgroundImage: "url('/images/promotions.png')" }}
       >
         <div className="bg-black bg-opacity-40 p-10 rounded-lg max-w-2xl">
           <h1 className="text-5xl font-bold mb-2 tracking-tight">Exclusive Promotions</h1>

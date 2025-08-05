@@ -2,7 +2,6 @@
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import CommunityBg from '../images/community.jpg';
 
 export default function CommunityPage() {
   const events = [
@@ -91,7 +90,7 @@ export default function CommunityPage() {
       {/* Hero Section */}
       <div
         className="w-full h-[500px] bg-cover bg-center flex items-center justify-center text-white text-center"
-        style={{ backgroundImage: `url(${CommunityBg.src})` }}
+        style={{ backgroundImage: "url('/images/community.jpg')" }} // ✅ updated
       >
         <div className="bg-black bg-opacity-50 p-8 rounded-lg max-w-3xl">
           <h1 className="text-5xl font-bold mb-2">Community Engagement</h1>

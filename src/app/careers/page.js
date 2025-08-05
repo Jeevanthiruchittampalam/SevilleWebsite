@@ -2,7 +2,6 @@
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import CareersBg from '../images/careers.jpg';
 
 export default function CareersPage() {
   const jobs = [
@@ -57,7 +56,7 @@ export default function CareersPage() {
       {/* Hero */}
       <div
         className="w-full h-[500px] bg-cover bg-center flex items-center justify-center text-white text-center"
-        style={{ backgroundImage: `url(${CareersBg.src})` }}
+        style={{ backgroundImage: "url('/images/careers.jpg')" }}
       >
         <div className="bg-black bg-opacity-50 p-8 rounded-lg max-w-3xl">
           <h1 className="text-5xl font-bold mb-2">Careers at Seville</h1>

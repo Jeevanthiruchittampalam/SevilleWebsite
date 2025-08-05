@@ -3,7 +3,6 @@
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Image from 'next/image';
-import Headshot from '../images/fillerheadshot.png';
 
 export default function TeamPage() {
   const team = [
@@ -62,7 +61,7 @@ export default function TeamPage() {
               className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 text-left hover:shadow-md transition-shadow"
             >
               <Image
-                src={Headshot}
+                src="/images/Properties2.jpg" // ✅ from /public
                 alt={member.name}
                 className="rounded-full mb-4 mx-auto"
                 width={120}

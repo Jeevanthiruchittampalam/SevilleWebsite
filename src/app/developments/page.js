@@ -2,7 +2,6 @@
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import DevelopmentBg from '../images/development.jpg';
 import { useState } from 'react';
 
 export default function DevelopmentsPage() {
@@ -52,7 +51,7 @@ export default function DevelopmentsPage() {
       {/* Hero */}
       <div
         className="w-full h-[500px] bg-cover bg-center flex items-center justify-center text-white text-center"
-        style={{ backgroundImage: `url(${DevelopmentBg.src})` }}
+        style={{ backgroundImage: "url('/images/development.jpg')" }}
       >
         <div className="bg-black bg-opacity-50 p-8 rounded-lg max-w-3xl">
           <h1 className="text-5xl font-bold mb-2">Our Developments</h1>

@@ -2,7 +2,7 @@
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Bg from '../images/otherindustries1.jpg';
+
 
 export default function OtherIndustriesPage() {
   const industries = [
@@ -25,7 +25,8 @@ export default function OtherIndustriesPage() {
       {/* Hero Section */}
       <div
         className="w-full h-[500px] bg-cover bg-center flex items-center justify-center text-white"
-        style={{ backgroundImage: `url(${Bg.src})` }}
+        style={{ backgroundImage: "url('/images/otherindustries1.jpg')" }}
+
       >
         <div className="bg-black bg-opacity-50 p-10 rounded-lg max-w-3xl text-center">
           <h1 className="text-5xl font-bold mb-2">Beyond Real Estate</h1>

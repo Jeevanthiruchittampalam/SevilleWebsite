@@ -2,10 +2,6 @@
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import MediaBg from '../images/media.jpg';
-import ImgFire from '../images/media/mediafire.jpg';
-import ImgPledge from '../images/media/renovation1.jpg';
-import ImgProgress from '../images/media/renovation2.jpg';
 
 export default function PressAndMediaPage() {
   return (
@@ -15,7 +11,7 @@ export default function PressAndMediaPage() {
       {/* Hero */}
       <div
         className="w-full h-[500px] bg-cover bg-center flex items-center justify-center text-white text-center"
-        style={{ backgroundImage: `url(${MediaBg.src})` }}
+        style={{ backgroundImage: "url('/images/media.jpg')" }} // ✅ updated
       >
         <div className="bg-black bg-opacity-50 p-8 rounded-lg max-w-3xl">
           <h1 className="text-5xl font-bold mb-2">Press & Media</h1>
@@ -25,10 +21,10 @@ export default function PressAndMediaPage() {
 
       {/* Articles (Newest to Oldest) */}
       <main className="flex-grow px-6 py-16 max-w-5xl mx-auto space-y-16">
-        {/* Article 3 — Most Recent */}
+        {/* Article 3 */}
         <article className="bg-white border border-gray-200 rounded-2xl shadow-md p-6">
           <img
-            src={ImgProgress.src}
+            src="/images/media/renovation2.jpg" // ✅ updated
             alt="Repaired unit interiors"
             className="w-full h-64 object-cover rounded-lg mb-6"
           />
@@ -51,10 +47,10 @@ export default function PressAndMediaPage() {
           </p>
         </article>
 
-        {/* Article 2 — Middle */}
+        {/* Article 2 */}
         <article className="bg-white border border-gray-200 rounded-2xl shadow-md p-6">
           <img
-            src={ImgPledge.src}
+            src="/images/media/renovation1.jpg" // ✅ updated
             alt="Renovation announcement"
             className="w-full h-64 object-cover rounded-lg mb-6"
           />
@@ -76,10 +72,10 @@ export default function PressAndMediaPage() {
           </p>
         </article>
 
-        {/* Article 1 — Oldest */}
+        {/* Article 1 */}
         <article className="bg-white border border-gray-200 rounded-2xl shadow-md p-6">
           <img
-            src={ImgFire.src}
+            src="/images/media/mediafire.jpg" // ✅ updated
             alt="Fire damage at 3925 Kingsway"
             className="w-full h-64 object-cover rounded-lg mb-6"
           />

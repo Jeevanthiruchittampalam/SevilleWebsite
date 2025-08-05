@@ -2,7 +2,6 @@
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import BlogBg from '../images/bcwinter1.jpg';
 
 export default function BlogPage() {
   const posts = [
@@ -43,7 +42,7 @@ export default function BlogPage() {
       {/* Hero Section */}
       <div
         className="w-full h-64 bg-cover bg-center flex items-center justify-center text-white text-center"
-        style={{ backgroundImage: `url(${BlogBg.src})` }}
+        style={{ backgroundImage: "url('/images/bcwinter1.jpg')" }}
       >
         <div className="bg-black bg-opacity-50 p-6 rounded">
           <h1 className="text-4xl font-bold">SALE UNDER CONSTRUCTION</h1>
