@@ -59,7 +59,7 @@ export default function PropertiesPage() {
       {/* Hero Section */}
       <div
         className="w-full h-[500px] bg-cover bg-center flex items-center justify-center text-white text-center"
-        style={{ backgroundImage: "url('/images/bcwinter1.jpg')" }}
+        style={{ backgroundImage: "url('/images/properties3.jpg')" }}
       >
         <div className="bg-black bg-opacity-50 p-8 rounded-lg max-w-3xl">
           <h1 className="text-5xl font-bold mb-2">Our Properties Portfolio</h1>
