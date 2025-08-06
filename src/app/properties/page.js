@@ -7,54 +7,47 @@ const DummyThumbnail = '/images/PropertiesC.jpg';
 
 const properties = [
   {
-    name: 'Orca Place',
-    address: '2233 W 35th Ave, Vancouver, BC',
-    description: 'Luxury rentals with rooftop amenities and ocean views in Vancouver’s vibrant west side.',
+    name: '3925 Kingsway',
+    address: '3925 Kingsway, Burnaby, BC',
+    description: 'Modern rental suites in a transit-friendly corridor near Metrotown and central Burnaby.',
+    image: '/images/BuildingHeads/Kingsway.jpg'
   },
   {
-    name: 'Seville Court',
-    address: '1642 Commercial Dr, Vancouver, BC',
-    description: 'Modern mid-rise with retail on the ground floor and excellent transit access.',
+    name: 'Belmont Place',
+    address: '250 East 2nd St, North Vancouver, BC',
+    description: 'Premium apartments with sweeping views of the city and easy access to Lonsdale Quay.',
   },
   {
-    name: 'Mainview Towers',
-    address: '3721 Main St, Vancouver, BC',
-    description: 'Contemporary rental suites with coworking lounge and fitness center.',
+    name: '1050 Bidwell',
+    address: '1050 Bidwell St, Vancouver, BC V6G 2K1',
+    description: 'Charming West End building located near English Bay with heritage-style character.',
+    image: '/images/BuildingHeads/Bidwell.jpg'
   },
   {
-    name: 'Eastgate Residences',
-    address: '2020 Kingsway, Burnaby, BC',
-    description: 'Mixed-use building adjacent to transit hub in Burnaby’s growing tech corridor.',
+    name: 'Centennial Manor',
+    address: '312 East 1st St, North Vancouver, BC',
+    description: 'Central North Van location with excellent community amenities and transit connectivity.',
+    image: '/images/BuildingHeads/Centennial.jpg'
   },
   {
-    name: 'Bayview Apartments',
-    address: '1500 Bay St, North Vancouver, BC',
-    description: 'Garden-style units with mountain views and sustainable landscape design.',
+    name: 'Parkview Place',
+    address: '328 3rd St East, North Vancouver, BC',
+    description: 'Quiet building close to parks, schools, and community centers in the Lower Lonsdale area.',
   },
   {
-    name: 'Hastings Lofts',
-    address: '4320 Hastings St, Vancouver, BC',
-    description: 'Industrial-chic loft apartments in a revitalized retail neighborhood.',
+    name: 'St Andrews Manor',
+    address: '215 St Andrews Ave, North Vancouver, BC',
+    description: 'Beautifully maintained building in a peaceful residential setting near Lonsdale Ave.',
   },
   {
-    name: 'Riverview Terrace',
-    address: '8801 Glover Rd, Richmond, BC',
-    description: 'Quiet suburban property with landscaped courtyard and secure parking.',
+    name: 'Townhouse – East 14th',
+    address: '55 East 14th Ave, Vancouver, BC',
+    description: 'Spacious townhouse-style rentals in the heart of Mount Pleasant with a private feel.',
   },
   {
-    name: 'Granville Crossing',
-    address: '450 Granville St, Vancouver, BC',
-    description: 'Downtown high-rise with tech-enhanced leasing and tenant portal.',
-  },
-  {
-    name: 'Sunset Commons',
-    address: '3250 Marine Dr, West Vancouver, BC',
-    description: 'Coastal rentals with spacious interiors and communal garden areas.',
-  },
-  {
-    name: 'Lakeside Manor',
-    address: '1200 Howe St, Vancouver, BC',
-    description: 'Elegantly designed rental suites with waterfront proximity and biking trails.',
+    name: 'Westwood Apartments',
+    address: '161 4th St West, North Vancouver, BC V7M 1H6',
+    description: 'Well-located rental building offering bright suites and easy access to central amenities.',
   },
 ];
 
@@ -84,7 +77,7 @@ export default function PropertiesPage() {
             {/* Property Image */}
             <div className="mb-4">
               <img
-                src={DummyThumbnail}
+                src={prop.image || DummyThumbnail}
                 alt={prop.name}
                 className="rounded-lg object-cover w-full h-48"
               />
