@@ -10,8 +10,8 @@ import GroupWheel from './components/GroupWheel';
 const sectorBackgrounds = {
   'Investments and Loans': '/images/Plant2.jpg',
   'Development': '/images/DevelopmentC.jpg',
-  'Technology': '/images/Technology.jpg',
-  'Management': '/images/Management.jpg',
+  'Technology': '/images/Technology5.jpg',
+  'Asset Management': '/images/Management.jpg',
   'Properties': '/images/Properties2.jpg',
   'Other Industries': '/images/OtherIndustries.jpg',
 };

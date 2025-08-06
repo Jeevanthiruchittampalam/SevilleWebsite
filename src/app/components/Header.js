@@ -20,7 +20,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="flex items-center justify-between px-6 py-4 shadow-md bg-white sticky top-0 z-50 h-24">
+      <header className="flex items-center justify-between px-6 py-2 shadow-md bg-white sticky top-0 z-50 h-16">
         <div className="flex items-center h-full">
           <Link href="/">
             <Image
@@ -42,7 +42,7 @@ export default function Header() {
           <Link href="/forsale" className="hover:underline">For Sale</Link>
           <Link href="/map" className="hover:underline">Map</Link>
 
-          {/* Dropdown (Click only) */}
+          {/* Dropdown */}
           <div className="relative">
             <button
               onClick={() => setGroupOpen(!groupOpen)}
@@ -67,6 +67,14 @@ export default function Header() {
 
           <Link href="/team" className="hover:underline">Team</Link>
           <Link href="/insights" className="hover:underline">Insights and Research</Link>
+
+          {/* MySeville Sign In Button */}
+          <Link
+            href="/myseville"
+            className="ml-4 px-4 py-1.5 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+          >
+            MySeville Sign In
+          </Link>
         </nav>
 
         {/* Mobile Hamburger */}
@@ -108,6 +116,7 @@ export default function Header() {
           </div>
           <Link href="/team" className="block py-2">Team</Link>
           <Link href="/insights" className="block py-2">Insights and Research</Link>
+          <Link href="/myseville" className="block py-2 text-blue-600 font-semibold">MySeville Sign In</Link>
         </nav>
       )}
     </>
