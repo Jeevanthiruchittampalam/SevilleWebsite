@@ -2,7 +2,7 @@
 export const dynamic = 'force-dynamic';
 
 import { useSearchParams } from 'next/navigation';
-import { useState, Suspense } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Image from 'next/image';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
