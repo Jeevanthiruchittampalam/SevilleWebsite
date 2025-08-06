@@ -2,12 +2,10 @@
 export const dynamic = 'force-dynamic';
 
 import { useSearchParams } from 'next/navigation';
-import { useState, useEffect, Suspense } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import Image from 'next/image';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import SearchBar from '../components/SearchBar';
-
 
 const listings = [
   {
@@ -43,7 +41,8 @@ Rent $2300/month with $200/month incentive for 12-month lease. 1/2 month rent da
 const cities = ['Vancouver', 'Victoria', 'Burnaby', 'Surrey', 'North Vancouver', 'Toronto', 'London'];
 const bedroomOptions = ['S', '1', '2'];
 
-export default function BlogPage() {
+// ✅ Separated into child component
+function FilteredListings() {
   const searchParams = useSearchParams();
 
   const [selectedCity, setSelectedCity] = useState('');
@@ -72,20 +71,7 @@ export default function BlogPage() {
   });
 
   return (
-    <div className="flex flex-col min-h-screen font-sans text-black bg-gray-50">
-      <Header />
-
-      {/* Hero Section */}
-      <div
-        className="w-full h-[600px] bg-cover bg-center flex items-center justify-center text-white text-center"
-        style={{ backgroundImage: "url('/images/forrentbg.jpg')" }}
-      >
-        <div className="bg-black bg-opacity-40 p-10 rounded-lg max-w-2xl">
-          <h1 className="text-5xl font-bold mb-2 tracking-tight">Available Rentals</h1>
-          <p className="text-lg italic">One step closer to finding your new home</p>
-        </div>
-      </div>
-
+    <>
       {/* Filters */}
       <div className="bg-white shadow-md rounded-lg p-6 mx-auto mt-8 max-w-5xl flex flex-col md:flex-row gap-6 justify-between items-center">
         {/* City */}
@@ -136,6 +122,12 @@ export default function BlogPage() {
 
       {/* Listings */}
       <main className="flex-grow px-4 py-12 max-w-5xl mx-auto space-y-16">
+        {filteredListings.length === 0 && (
+          <p className="text-center text-gray-600 text-lg mt-10">
+            No listings found with those filters.
+          </p>
+        )}
+
         {filteredListings.map((listing) => (
           <section
             key={listing.id}
@@ -150,10 +142,8 @@ export default function BlogPage() {
               units available
             </p>
 
-            {/* Info Header */}
             <p className="text-xl font-semibold text-black mb-4">{listing.info}</p>
 
-            {/* Images */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
               {listing.images.map((img, idx) => (
                 <Image
@@ -167,8 +157,9 @@ export default function BlogPage() {
               ))}
             </div>
 
-            {/* Description */}
-            <p className="text-gray-700 leading-relaxed mb-4 whitespace-pre-line">{listing.description}</p>
+            <p className="text-gray-700 leading-relaxed mb-4 whitespace-pre-line">
+              {listing.description}
+            </p>
 
             <button
               onClick={togglePopup}
@@ -208,6 +199,30 @@ export default function BlogPage() {
           </div>
         </div>
       )}
+    </>
+  );
+}
+
+// ✅ Main Page
+export default function ForRentPage() {
+  return (
+    <div className="flex flex-col min-h-screen font-sans text-black bg-gray-50">
+      <Header />
+
+      <div
+        className="w-full h-[600px] bg-cover bg-center flex items-center justify-center text-white text-center"
+        style={{ backgroundImage: "url('/images/forrentbg.jpg')" }}
+      >
+        <div className="bg-black bg-opacity-40 p-10 rounded-lg max-w-2xl">
+          <h1 className="text-5xl font-bold mb-2 tracking-tight">Available Rentals</h1>
+          <p className="text-lg italic">One step closer to finding your new home</p>
+        </div>
+      </div>
+
+      {/* ✅ Wrap in Suspense here only */}
+      <Suspense fallback={<div className="text-center py-10 text-gray-500">Loading listings...</div>}>
+        <FilteredListings />
+      </Suspense>
 
       <Footer />
     </div>
