@@ -51,7 +51,7 @@ export default function BlogPage() {
 
       >
         <div className="bg-black bg-opacity-50 p-6 rounded">
-          <h1 className="text-4xl font-bold">Seville Management Blog</h1>
+          <h1 className="text-4xl font-bold">Seville Investments Blog</h1>
           <p className="text-sm mt-2 italic">The latest on BC real estate, landlord policy & market trends</p>
         </div>
       </div>

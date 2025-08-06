@@ -1,8 +1,8 @@
+// src/app/otherindustries/page.js
 'use client';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-
 
 export default function OtherIndustriesPage() {
   const industries = [
@@ -19,14 +19,13 @@ export default function OtherIndustriesPage() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen font-sans bg-gray-50 text-black">
+    <div className="flex flex-col min-h-screen font-heading bg-gray-50 text-black">
       <Header />
 
       {/* Hero Section */}
       <div
         className="w-full h-[500px] bg-cover bg-center flex items-center justify-center text-white"
         style={{ backgroundImage: "url('/images/otherindustries1.jpg')" }}
-
       >
         <div className="bg-black bg-opacity-50 p-10 rounded-lg max-w-3xl text-center">
           <h1 className="text-5xl font-bold mb-2">Beyond Real Estate</h1>
@@ -39,7 +38,9 @@ export default function OtherIndustriesPage() {
       {/* Industries Section */}
       <main className="flex-grow px-6 py-16 max-w-5xl mx-auto">
         <section className="space-y-6 text-center">
-          <h2 className="text-3xl font-semibold text-gray-900">Industries We&apos; Interested In</h2>
+          <h2 className="text-3xl font-semibold text-gray-900">
+            Industries We&apos;re Interested In
+          </h2>
           <p className="text-gray-700 max-w-3xl mx-auto">
             While real estate and development remain our core focus, Seville Investments is actively exploring
             strategic investments in adjacent and emerging industries. We believe innovation often comes from the edge.

@@ -10,7 +10,7 @@ import GroupWheel from './components/GroupWheel';
 const sectorBackgrounds = {
   'Investments and Loans': '/images/Plant2.jpg',
   'Development': '/images/DevelopmentC.jpg',
-  'Technology': '/images/Technology5.jpg',
+  'Technology': '/images/tech2.jpg',
   'Asset Management': '/images/Management.jpg',
   'Properties': '/images/Properties2.jpg',
   'Other Industries': '/images/OtherIndustries.jpg',
@@ -48,7 +48,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen font-sans text-black">
+    <div className="flex flex-col min-h-screen font-body text-black">
       <Header />
 
       <main
@@ -57,11 +57,11 @@ export default function Home() {
           backgroundImage: `url(${sectorBackgrounds[activeSector]})`,
         }}
       >
-        <h1 className="text-4xl font-bold text-white mb-4 drop-shadow-lg">
+        <h1 className="text-4xl font-heading text-white mb-4 drop-shadow-lg">
           Welcome to Seville Investments
         </h1>
-        <p className="text-lg text-white max-w-xl drop-shadow-md mb-8">
-          We develop and manage exceptional living spaces with care and expertise.
+        <p className="text-lg font-body text-white max-w-xl drop-shadow-md mb-8">
+          We manage premium rentals, grow assets, and deliver modern real estate solutions.
         </p>
 
         <SearchBar />

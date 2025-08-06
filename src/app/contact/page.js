@@ -12,7 +12,7 @@ export default function ContactPage() {
       {/* Hero Section with Taller Background Image */}
       <div
         className="w-full h-[500px] bg-cover bg-center flex items-center justify-center text-white text-center"
-        style={{ backgroundImage: "url('/images/contactus.jpg')" }}
+        style={{ backgroundImage: "url('/images/contactus3.png')" }}
       >
         <div className="bg-black bg-opacity-50 p-8 rounded-lg max-w-2xl">
           <h1 className="text-5xl font-bold mb-2"></h1>

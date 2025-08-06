@@ -31,7 +31,7 @@ export default function PressAndMediaPage() {
           <p className="text-gray-500 text-sm mb-2">📅 August 2, 2025</p>
           <h2 className="text-2xl font-semibold mb-4">Four Units Repaired at Kingsway — Demand Growing</h2>
           <p className="text-gray-700 mb-3">
-            In just under two weeks since the fire at 3925 Kingsway Avenue, Seville Management has already completed
+            In just under two weeks since the fire at 3925 Kingsway Avenue, Seville Investments has already completed
             renovations on four of the ten affected units. All repaired spaces have undergone comprehensive updates,
             including new flooring, cabinetry, and fire-resistant materials.
           </p>
@@ -82,7 +82,7 @@ export default function PressAndMediaPage() {
           <p className="text-gray-500 text-sm mb-2">📅 July 23, 2025</p>
           <h2 className="text-2xl font-semibold mb-4">Suspect Identified in 3925 Kingsway Fire Incident</h2>
           <p className="text-gray-700 mb-3">
-            On July 22nd, emergency crews responded to a significant fire at one of Seville Management’s properties
+            On July 22nd, emergency crews responded to a significant fire at one of Seville Investments properties
             located at 3925 Kingsway Avenue. The fire, which began on the third floor, caused extensive damage to ten
             residential units before it was contained. Residents were safely evacuated and no injuries were reported.
           </p>
@@ -92,7 +92,7 @@ export default function PressAndMediaPage() {
             residents, many of whom are long-term tenants of the building.
           </p>
           <p className="text-gray-700">
-            Seville Management expressed gratitude to emergency responders and reassured tenants that long-term
+            Seville Investments expressed gratitude to emergency responders and reassured tenants that long-term
             restoration plans were already underway. The company has committed to both structural and amenity upgrades
             as part of the post-incident recovery.
           </p>

@@ -41,7 +41,7 @@ export default function GroupWheel({ activeSector, setActiveSector }) {
   return (
     <div
       className="relative w-full mx-auto mt-20"
-      style={{ height: `${circleDiameter + 80}px`, maxWidth: `${circleDiameter + 80}px` }}
+      style={{ height: `${circleDiameter + 100}px`, maxWidth: `${circleDiameter + 80}px` }}
     >
       {/* Main Circle */}
       <div
@@ -53,17 +53,23 @@ export default function GroupWheel({ activeSector, setActiveSector }) {
         }}
       />
 
-      {/* Center Content */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-        {currentSector ? (
-          <Link
-            href={currentSector.href}
-            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-full shadow-md transition-all duration-300 text-sm sm:text-base"
-          >
-            Learn More
-          </Link>
-        ) : (
-          <div className="text-white text-base sm:text-lg font-bold tracking-widest">
+      {/* Center Content: Title + Button */}
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center space-y-3">
+        {currentSector && (
+          <>
+            <div className="text-white text-xl sm:text-2xl font-bold tracking-wide">
+              {currentSector.name}
+            </div>
+            <Link
+              href={currentSector.href}
+              className="inline-block bg-white hover:bg-gray-100 text-black font-medium px-4 py-1.5 shadow transition-all duration-300 text-xs sm:text-sm border border-gray-300"
+            >
+              Learn More
+            </Link>
+          </>
+        )}
+        {!currentSector && (
+          <div className="text-white text-lg sm:text-xl font-bold tracking-widest">
             SECTORS
           </div>
         )}
@@ -101,12 +107,11 @@ export default function GroupWheel({ activeSector, setActiveSector }) {
 
             {/* Label */}
             <div
-              className="absolute text-center text-[10px] sm:text-sm transition-all duration-300 whitespace-nowrap cursor-pointer"
+              className="absolute text-center text-[10px] sm:text-sm transition-all duration-300 whitespace-nowrap cursor-pointer text-white"
               style={{
                 top: `calc(50% + ${labelY}px)`,
                 left: `calc(50% + ${labelX}px)`,
                 transform: 'translate(-50%, -50%)',
-                color: isActive ? '#3B82F6' : '#FFFFFF',
                 fontWeight: isActive ? 600 : 400,
               }}
               onClick={() => setActiveSector(sector.name)}

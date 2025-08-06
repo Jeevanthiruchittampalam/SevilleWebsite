@@ -24,7 +24,7 @@ export default function ForSalePage() {
         <div className="bg-white shadow-md rounded-xl border border-gray-200 p-10 max-w-xl">
           <h2 className="text-3xl font-semibold text-gray-800 mb-4">Currently No Listings Available</h2>
           <p className="text-gray-600 text-md">
-            Please check back soon for our upcoming listings or contact us directly at palas@sevilleinvestments.ca for more information.
+            Please check back soon for our upcoming listings or contact us directly at gierly@sevilleinvestments.ca for more information.
           </p>
         </div>
       </main>
