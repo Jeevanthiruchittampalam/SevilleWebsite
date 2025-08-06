@@ -3,7 +3,6 @@
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-
 export default function BlogPage() {
   const posts = [
     {
@@ -19,7 +18,7 @@ export default function BlogPage() {
       title: '3-Month Landlord Eviction Notice Rule Now Active',
       content: [
         "As of June 18, landlords in British Columbia can now issue 'landlord-use' eviction notices with only three months’ warning, down from the previous four-month requirement. This means if a landlord intends to use the property themselves or for close family, tenants now have one month less to vacate.",
-        "While some landlords welcomeeee the added flexibility, tenant advocates argue the shorter timeline creates hardship for renters in a market with limited vacancy and rising rents. The BC government has defended the move as part of broader tenancy reform meant to increase fairness and efficiency in disputes."
+        "While some landlords welcome the added flexibility, tenant advocates argue the shorter timeline creates hardship for renters in a market with limited vacancy and rising rents. The BC government has defended the move as part of broader tenancy reform meant to increase fairness and efficiency in disputes."
       ]
     },
     {
@@ -46,13 +45,12 @@ export default function BlogPage() {
 
       {/* Hero Section */}
       <div
-        className="w-full h-64 bg-cover bg-center flex items-center justify-center text-white text-center"
+        className="w-full h-[500px] bg-cover bg-center flex items-center justify-center text-white text-center"
         style={{ backgroundImage: "url('/images/blog.jpg')" }}
-
       >
-        <div className="bg-black bg-opacity-50 p-6 rounded">
-          <h1 className="text-4xl font-bold">Seville Investments Blog</h1>
-          <p className="text-sm mt-2 italic">The latest on BC real estate, landlord policy & market trends</p>
+        <div className="bg-black bg-opacity-40 p-10 rounded-lg max-w-2xl">
+          <h1 className="text-5xl font-bold mb-2 tracking-tight">Seville Investments Blog</h1>
+          <p className="text-lg italic">The latest on BC real estate, landlord policy & market trends</p>
         </div>
       </div>
 
