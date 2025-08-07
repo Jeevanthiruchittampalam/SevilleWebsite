@@ -6,11 +6,11 @@ import Link from 'next/link';
 import SevilleLogo from '../../../public/images/SevilleLogo1.png';
 
 const sectorItems = [
-  { name: 'Investments and Loans', href: '/investmentsandloans' },
+  { name: 'Properties', href: '/properties' },
   { name: 'Development', href: '/developments' },
   { name: 'Technology', href: '/technology' },
   { name: 'Asset Management', href: '/management' },
-  { name: 'Properties', href: '/properties' },
+  { name: 'Investments and Loans', href: '/investmentsandloans' },
   { name: 'Other Industries', href: '/otherindustries' },
 ];
 

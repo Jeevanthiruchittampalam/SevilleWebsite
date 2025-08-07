@@ -41,9 +41,7 @@ export default function PressAndMediaPage() {
             and new applicants.
           </p>
           <p className="text-gray-700">
-            “We’re seeing exceptional interest in these newly renovated units,” noted Palas Chauhan, Seville’s Financial
-            Director. “It’s a testament to our resilience and the continued demand for high-quality rental housing in
-            the Lower Mainland.”
+           
           </p>
         </article>
 
@@ -67,8 +65,7 @@ export default function PressAndMediaPage() {
             credits during the repair period.
           </p>
           <p className="text-gray-700">
-            “The well-being of our tenants is our top priority,” said Gierly Magrata, Tenant Relations Manager. “We’re
-            treating this as an opportunity to improve the quality of these homes for the long term.”
+            
           </p>
         </article>
 

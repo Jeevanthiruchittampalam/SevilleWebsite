@@ -5,27 +5,6 @@ import Footer from '../components/Footer';
 import { useState } from 'react';
 
 export default function DevelopmentsPage() {
-  const projects = [
-    {
-      name: 'Seville Gardens – Richmond',
-      description:
-        'A luxury mid-rise residential development featuring 120 condo units with rooftop gardens, smart home integrations, and LEED Gold certification. Launching Q2 2026.',
-      status: 'Planning Phase',
-    },
-    {
-      name: 'Eastgate Tech Campus – Burnaby',
-      description:
-        'A mixed-use complex integrating commercial offices, innovation labs, and retail spaces. Focused on attracting green tech startups. Completion expected in early 2027.',
-      status: 'Under Municipal Review',
-    },
-    {
-      name: 'The Point at Hastings – Vancouver',
-      description:
-        'An urban infill redevelopment featuring rental apartments, coworking spaces, and ground-floor cafes. Designed to activate and revitalize the Hastings corridor.',
-      status: 'Pre-Construction',
-    },
-  ];
-
   const [formData, setFormData] = useState({
     name: '',
     contact: '',
@@ -39,7 +18,6 @@ export default function DevelopmentsPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulate submission
     alert('Thank you for your inquiry. We will get back to you shortly.');
     setFormData({ name: '', contact: '', message: '' });
   };
@@ -60,26 +38,15 @@ export default function DevelopmentsPage() {
       </div>
 
       {/* Projects Section */}
-      <main className="flex-grow px-6 py-12 max-w-5xl mx-auto space-y-16">
-        <section>
-          <h2 className="text-3xl font-semibold mb-8 text-center">Upcoming Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {projects.map((proj, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-2xl shadow-md p-6 border border-gray-200 hover:shadow-lg transition-shadow"
-              >
-                <h3 className="text-xl font-bold mb-2 text-gray-900">{proj.name}</h3>
-                <p className="text-gray-700 mb-3">{proj.description}</p>
-                <p className="text-sm text-gray-600">
-                  <strong>Status:</strong> {proj.status}
-                </p>
-              </div>
-            ))}
-          </div>
+      <main className="flex-grow px-6 py-12 max-w-4xl mx-auto space-y-16">
+        <section className="text-center">
+          <h2 className="text-3xl font-semibold mb-6">Upcoming Projects</h2>
+          <p className="text-lg text-gray-700">
+            There are currently no developments to display. Please check back soon.
+          </p>
         </section>
 
-        {/* Inquiry Form Section */}
+        {/* Inquiry Form */}
         <section>
           <h2 className="text-3xl font-semibold mb-6 text-center">Development Inquiries</h2>
           <form

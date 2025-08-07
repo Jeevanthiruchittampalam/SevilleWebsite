@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import Image from 'next/image';
 
 export default function TeamPage() {
-  const team = [
+  const Administration = [
     {
       name: 'Kulwant Chauhan',
       title: 'Chief Executive Officer',
@@ -47,21 +47,49 @@ export default function TeamPage() {
     },
   ];
 
-  return (
-    <div className="flex flex-col min-h-screen bg-gray-50 font-sans text-black">
-      <Header />
+  const maintenance = [
+    {
+      name: 'MacArthur Tulali',
+      title: 'Property Maintenance',
+      email: ' ',
+    },
+    {
+      name: 'Ashwin Steinson',
+      title: 'Property Maintenance & Operations',
+      email: ' ',
+    },
+    {
+      name: 'Nikhil Thiruchittampalam',
+      title: 'Property Maintenance & Operations',
+      email: ' ',
+    },
+    {
+      name: 'Eddie Jeng',
+      title: 'Property Maintenance',
+      email: ' ',
+    },
+    {
+      name: 'Punam Mainali',
+      title: 'Property Manager',
+      email: ' ',
+    },
+  ];
 
-      <section className="py-20 px-6 max-w-6xl mx-auto text-center">
-        <h1 className="text-4xl font-bold mb-4">Our Team</h1>
+  const renderTeamSection = (title, teamArray) => (
+    <section className="bg-gray-50 py-20 px-6 text-black">
+      <div className="max-w-6xl mx-auto text-center">
+        <h2 className="text-3xl font-bold mb-4">{title}</h2>
         <p className="text-lg text-gray-600 mb-12">
-          Meet the professionals behind Seville Investments
+          {title === 'Administration'
+            ? ' '
+            : ' '}
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-          {team.map((member, index) => (
+          {teamArray.map((member, index) => (
             <div
               key={index}
-              className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 text-left hover:shadow-md transition-shadow"
+              className="bg-white text-black border border-gray-200 rounded-xl shadow-sm p-6 text-left hover:shadow-md transition-shadow"
             >
               <Image
                 src={member.image || '/images/dummyheadshot.png'}
@@ -70,16 +98,31 @@ export default function TeamPage() {
                 width={120}
                 height={120}
               />
-              <h2 className="text-xl font-semibold text-center mb-1">{member.name}</h2>
+              <h3 className="text-xl font-semibold text-center mb-1">{member.name}</h3>
               <p className="text-sm text-gray-700 text-center mb-2">{member.title}</p>
-              <p className="text-sm text-gray-600 mb-4">{member.bio || ''}</p>
-              <p className="text-sm text-blue-700 text-center">
-                <a href={`mailto:${member.email}`} className="hover:underline">{member.email}</a>
-              </p>
+              {member.bio && (
+                <p className="text-sm text-gray-600 mb-4">{member.bio}</p>
+              )}
+              {member.email && (
+                <p className="text-sm text-blue-700 text-center">
+                  <a href={`mailto:${member.email}`} className="hover:underline">
+                    {member.email}
+                  </a>
+                </p>
+              )}
             </div>
           ))}
         </div>
-      </section>
+      </div>
+    </section>
+  );
+
+  return (
+    <div className="flex flex-col min-h-screen font-sans text-black">
+      <Header />
+
+      {renderTeamSection('Administration', Administration)}
+      {renderTeamSection('Maintenance', maintenance)}
 
       <Footer />
     </div>

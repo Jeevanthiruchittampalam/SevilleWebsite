@@ -90,7 +90,7 @@ export default function ManagementPage() {
           href="mailto:gierly@sevilleinvestments.ca"
           className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-md transition-colors"
         >
-          Email Gierly Magrata
+          Email Us Here
         </a>
       </section>
 
