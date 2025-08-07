@@ -46,7 +46,7 @@ export default function BlogPage() {
       {/* Hero Section */}
       <div
         className="w-full h-[500px] bg-cover bg-center flex items-center justify-center text-white text-center"
-        style={{ backgroundImage: "url('/images/blog.jpg')" }}
+        style={{ backgroundImage: "url('/images/blog2.jpg')" }}
       >
         <div className="bg-black bg-opacity-40 p-10 rounded-lg max-w-2xl">
           <h1 className="text-5xl font-bold mb-2 tracking-tight">Seville Investments Blog</h1>

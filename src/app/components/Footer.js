@@ -6,7 +6,7 @@ import Image from 'next/image';
 export default function Footer() {
   const footerLinks = [
     { label: 'About Us', href: '/aboutus' },
-    { label: 'Commercial', href: '/commercial' },
+    // { label: 'Commercial', href: '/commercial' },
     { label: 'Community', href: '/community' },
     { label: 'Promotions', href: '/promotions' },
     { label: 'Rental Process', href: '/rentalprocess' },
@@ -81,12 +81,12 @@ export default function Footer() {
             className="rounded-xl shadow-lg object-cover"
           />
           <blockquote className="text-gray-800 text-lg leading-relaxed max-w-2xl">
-            &ldquo;Joining Seville was one of the best decisions I&rsquo;ve made professionally.
-            The team is supportive, the vision is bold, and the work is meaningful. I take pride
+            &ldquo;Starting Seville was one of the best decisions I&rsquo;ve made professionally.
+            The current team supportive, the vision is bold, and the work is meaningful. It has come a long way since 1983, and I take pride
             in helping shape the future of property management through both innovation and
             tradition.&rdquo;
             <footer className="mt-4 text-sm text-gray-600 font-medium">
-              — Narinder Chauhan, Operations Lead
+              — Narinder Chauhan, Founder
             </footer>
           </blockquote>
         </div>

@@ -79,7 +79,7 @@ export default function AboutPage() {
               commitment to transparency, adaptability, and people-first service is what truly sets us
               apart.&rdquo;
               <div className="mt-4 text-right font-normal text-base not-italic">
-                — Narinder Chauhan, Managing Partner
+                
               </div>
             </blockquote>
           </div>
