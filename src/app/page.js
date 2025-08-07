@@ -8,13 +8,14 @@ import GroupWheel from './components/GroupWheel';
 
 // Backgrounds mapped to sector names (use public image paths)
 const sectorBackgrounds = {
-  'Investments and Loans': '/images/Plant2.jpg',
+  'Properties': '/images/Properties2.jpg', // moved to top
   'Development': '/images/DevelopmentC.jpg',
   'Technology': '/images/tech2.jpg',
   'Asset Management': '/images/Management.jpg',
-  'Properties': '/images/Properties2.jpg',
+  'Investments and Loans': '/images/Plant2.jpg',
   'Other Industries': '/images/OtherIndustries.jpg',
 };
+
 
 const sectors = Object.keys(sectorBackgrounds);
 
@@ -52,7 +53,7 @@ export default function Home() {
       <Header />
 
       <main
-        className="flex-grow flex flex-col items-center justify-center text-center px-4 py-16 bg-cover bg-center transition-all duration-500"
+        className="flex-grow flex flex-col items-center justify-center text-center px- py-16 bg-cover bg-center transition-all duration-500"
         style={{
           backgroundImage: `url(${sectorBackgrounds[activeSector]})`,
         }}

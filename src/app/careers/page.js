@@ -1,9 +1,12 @@
 'use client';
 
+import { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 export default function CareersPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const jobs = [
     {
       title: 'Data Engineer',
@@ -27,11 +30,11 @@ export default function CareersPage() {
         'Perform daily maintenance and repair tasks across Seville properties. Plumbing, electrical, and general handywork experience preferred. Tools and van provided.',
     },
     {
-      title: 'Maintenance Worker – Richmond',
-      location: 'Richmond, BC',
+      title: 'Maintenance Worker – Burnaby',
+      location: 'Burnaby, BC',
       date: 'Posted July 31, 2025',
       description:
-        'Join our site team in Richmond. Handle service calls, unit turnover prep, and emergency repairs. Must be comfortable with tenant interaction and flexible hours.',
+        'Join our site team in Burnaby. Handle service calls, unit turnover prep, and emergency repairs. Must be comfortable with tenant interaction and flexible hours.',
     },
     {
       title: 'Accountant',
@@ -48,6 +51,9 @@ export default function CareersPage() {
         'Support North Shore operations with routine and preventative maintenance. Join a reliable team focused on high standards and tenant satisfaction.',
     },
   ];
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <div className="flex flex-col min-h-screen font-sans text-black bg-gray-50">
@@ -89,12 +95,45 @@ export default function CareersPage() {
               <p className="text-sm text-gray-500 mb-4 italic">{job.date}</p>
               <p className="text-gray-700 mb-6">{job.description}</p>
             </div>
-            <button className="self-start bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
+            <button
+              onClick={openModal}
+              className="self-start bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+            >
               Apply Now
             </button>
           </div>
         ))}
       </section>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+          onClick={closeModal}
+        >
+          <div
+            className="bg-white rounded-lg p-6 max-w-md text-center shadow-lg"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 className="text-xl font-semibold mb-4">Apply via Email</h2>
+            <p className="text-gray-700">
+              Please email your resume and cover letter to:{' '}
+              <a
+                href="mailto:jeevan@sevilleinvestments.ca"
+                className="text-blue-600 hover:underline"
+              >
+                jeevan@sevilleinvestments.ca
+              </a>
+            </p>
+            <button
+              onClick={closeModal}
+              className="mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>

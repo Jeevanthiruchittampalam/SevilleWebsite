@@ -4,13 +4,14 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 const sectors = [
-  { name: 'Investments and Loans', href: '/investmentsandloans' },
+  { name: 'Properties', href: '/properties' }, // moved to top
   { name: 'Development', href: '/developments' },
   { name: 'Technology', href: '/technology' },
   { name: 'Asset Management', href: '/management' },
-  { name: 'Properties', href: '/properties' },
+  { name: 'Investments and Loans', href: '/investmentsandloans' },
   { name: 'Other Industries', href: '/otherindustries' },
 ];
+
 
 export default function GroupWheel({ activeSector, setActiveSector }) {
   const [circleDiameter, setCircleDiameter] = useState(360);
