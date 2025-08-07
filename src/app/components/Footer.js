@@ -82,7 +82,7 @@ export default function Footer() {
           />
           <blockquote className="text-gray-800 text-lg leading-relaxed max-w-2xl">
             &ldquo;Starting Seville was one of the best decisions I&rsquo;ve made professionally.
-            The current team supportive, the vision is bold, and the work is meaningful. It has come a long way since 1983, and I take pride
+            The current team is supportive, the vision is bold, and the work is meaningful. It has come a long way since 1983, and I take pride
             in helping shape the future of property management through both innovation and
             tradition.&rdquo;
             <footer className="mt-4 text-sm text-gray-600 font-medium">
