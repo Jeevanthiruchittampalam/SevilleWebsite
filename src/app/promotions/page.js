@@ -26,7 +26,7 @@ export default function PromotionsPage() {
             Current Offers
           </h2>
           <p className="text-gray-600 text-lg">
-            There are currently no promotions available at this time.
+            Sorry, there are currently no promotions available at this time.
           </p>
           <p className="text-gray-600 text-lg">
             Please check back soon for future offers and incentives.
