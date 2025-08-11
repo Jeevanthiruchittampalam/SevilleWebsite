@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import SevilleLogo from '../../../public/images/SevilleLogo1.png';
+import SevilleLogo from '../../../public/images/sevillelogo3.png';
 
 const sectorItems = [
   { name: 'Properties', href: '/properties' },
@@ -17,73 +17,109 @@ const sectorItems = [
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [groupOpen, setGroupOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  // Close “Groups” when clicking outside (desktop & mobile)
+  useEffect(() => {
+    const onClick = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setGroupOpen(false);
+      }
+    };
+    if (groupOpen) document.addEventListener('mousedown', onClick);
+    return () => document.removeEventListener('mousedown', onClick);
+  }, [groupOpen]);
 
   return (
     <>
-      <header className="flex items-center justify-between px-6 py-2 shadow-md bg-white sticky top-0 z-50 h-16">
-        <div className="flex items-center h-full">
-          <Link href="/">
+      <header className="sticky top-0 z-50 h-16 bg-zinc-950/80 backdrop-blur supports-[backdrop-filter]:bg-zinc-950/60 border-b border-zinc-800">
+        <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-6">
+          {/* Logo */}
+          <Link href="/" className="flex items-center h-full">
             <Image
               src={SevilleLogo}
-              alt="Seville Logo"
-              layout="intrinsic"
-              className="h-full w-auto cursor-pointer"
+              alt="Seville"
               width={120}
               height={120}
+              className="h-10 w-auto"
               priority
             />
           </Link>
-        </div>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex gap-6 text-sm font-medium items-center">
-          <Link href="/" className="hover:underline">Home</Link>
-          <Link href="/forrent" className="hover:underline">For Rent</Link>
-          <Link href="/forsale" className="hover:underline">For Sale</Link>
-          <Link href="/map" className="hover:underline">Map</Link>
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-6 text-xs tracking-wide uppercase text-zinc-300">
+            <Link href="/" className="hover:text-white/90">Home</Link>
+            <Link href="/forrent" className="hover:text-white/90">For Rent</Link>
+            <Link href="/forsale" className="hover:text-white/90">For Sale</Link>
+            <Link href="/map" className="hover:text-white/90">Map</Link>
 
-          {/* Dropdown */}
-          <div className="relative">
-            <button
-              onClick={() => setGroupOpen(!groupOpen)}
-              className="flex items-center gap-1 hover:underline"
+            {/* Groups dropdown */}
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setGroupOpen(!groupOpen)}
+                aria-expanded={groupOpen}
+                className="flex items-center gap-1 hover:text-white/90"
+              >
+                Groups
+                <svg className={`h-3 w-3 transition ${groupOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.207l3.71-3.977a.75.75 0 1 1 1.1 1.02l-4.25 4.56a.75.75 0 0 1-1.1 0l-4.25-4.56a.75.75 0 0 1 .02-1.06z" />
+                </svg>
+              </button>
+
+              {groupOpen && (
+                <div
+                  role="menu"
+                  className="absolute left-0 mt-3 w-72 rounded-xl border border-zinc-800 bg-zinc-900/95 shadow-2xl p-2"
+                >
+                  <div className="grid grid-cols-1">
+                    {sectorItems.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="block rounded-lg px-3 py-2 text-[13px] text-zinc-200 hover:bg-zinc-800/70"
+                        onClick={() => setGroupOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <Link href="/team" className="hover:text-white/90">Team</Link>
+            <Link href="/insights" className="hover:text-white/90">Insights</Link>
+
+            {/* Forms pill (links to About Us for now) */}
+            <Link
+              href="/aboutus"
+              className="group ml-2 inline-flex items-center gap-2 rounded-full border border-emerald-400/40 px-3 py-1.5 font-medium text-[11px] text-emerald-300 hover:bg-emerald-500/10"
             >
-              Groups <span className="text-xs">{groupOpen ? '▲' : '▼'}</span>
-            </button>
-            {groupOpen && (
-              <div className="absolute left-0 mt-2 bg-white shadow-lg rounded p-2 w-60 max-h-64 overflow-y-auto z-10">
-                {sectorItems.map((item, idx) => (
-                  <Link
-                    key={idx}
-                    href={item.href}
-                    className="block px-4 py-2 hover:bg-gray-100 text-sm"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
+              {/* green circular design */}
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="absolute inline-flex h-full w-full rounded-full opacity-60 animate-ping bg-emerald-400"></span>
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
+              </span>
+              Forms
+            </Link>
 
-          <Link href="/team" className="hover:underline">Team</Link>
-          <Link href="/insights" className="hover:underline">Insights and Research</Link>
+            {/* MySeville button */}
+            <Link
+              href="/myseville"
+              className="inline-flex items-center rounded-full border border-zinc-700 px-4 py-1.5 text-[11px] font-medium text-zinc-100 hover:bg-zinc-800"
+            >
+              MySeville Sign In
+            </Link>
+          </nav>
 
-          {/* MySeville Sign In Button */}
-          <Link
-            href="/myseville"
-            className="ml-4 px-4 py-1.5 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+          {/* Mobile Hamburger */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden inline-flex items-center justify-center rounded-md p-2 text-zinc-100 hover:bg-zinc-800"
+            aria-label="Open menu"
           >
-            MySeville Sign In
-          </Link>
-        </nav>
-
-        {/* Mobile Hamburger */}
-        <div className="md:hidden">
-          <button onClick={() => setMenuOpen(!menuOpen)}>
-            <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" strokeWidth="2"
-              viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round"
-                d="M4 6h16M4 12h16M4 18h16" />
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
         </div>
@@ -91,32 +127,47 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <nav className="md:hidden bg-white shadow-md px-4 py-2 text-sm text-black">
+        <nav className="md:hidden bg-zinc-950 text-zinc-100 border-b border-zinc-800 px-4 py-3 space-y-2">
           <Link href="/" className="block py-2">Home</Link>
           <Link href="/forrent" className="block py-2">For Rent</Link>
           <Link href="/forsale" className="block py-2">For Sale</Link>
           <Link href="/map" className="block py-2">Map</Link>
-          <div>
-            <button
-              onClick={() => setGroupOpen(!groupOpen)}
-              className="flex items-center justify-between w-full py-2"
-            >
-              <span>Groups</span>
-              <span className="text-xs">{groupOpen ? '▲' : '▼'}</span>
-            </button>
-            {groupOpen && (
-              <div className="pl-4">
-                {sectorItems.map((item, idx) => (
-                  <Link key={idx} href={item.href} className="block py-1 hover:underline">
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-          <Link href="/team" className="block py-2">Team</Link>
-          <Link href="/insights" className="block py-2">Insights and Research</Link>
-          <Link href="/myseville" className="block py-2 text-blue-600 font-semibold">MySeville Sign In</Link>
+
+          <button
+            onClick={() => setGroupOpen(!groupOpen)}
+            className="flex w-full items-center justify-between py-2"
+          >
+            <span>Groups</span>
+            <span className="text-xs">{groupOpen ? '▲' : '▼'}</span>
+          </button>
+          {groupOpen && (
+            <div className="pl-3">
+              {sectorItems.map((item) => (
+                <Link key={item.href} href={item.href} className="block py-1.5 text-zinc-300">
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          )}
+
+          {/* Forms pill */}
+          <Link
+            href="/aboutus"
+            className="mt-2 inline-flex items-center gap-2 rounded-full border border-emerald-400/40 px-3 py-1.5 text-sm text-emerald-300"
+          >
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="absolute inline-flex h-full w-full rounded-full opacity-60 animate-ping bg-emerald-400"></span>
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
+            </span>
+            Forms
+          </Link>
+
+          <Link
+            href="/myseville"
+            className="block rounded-full border border-zinc-700 px-4 py-2 text-center"
+          >
+            MySeville Sign In
+          </Link>
         </nav>
       )}
     </>

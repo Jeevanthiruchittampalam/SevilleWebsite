@@ -38,10 +38,9 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="mt-20">
-
-      {/* Seville Quick Links */}
-      <section className="bg-gray-900 py-16">
+    <footer className="mt-20 bg-black text-zinc-300">
+      {/* Seville Quick Links (white cards like before) */}
+      <section className="py-16 bg-zinc-950 border-t border-zinc-800">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl font-semibold text-white text-center mb-10">
             Seville Quick Links
@@ -51,7 +50,7 @@ export default function Footer() {
               <Link
                 href={link.href}
                 key={idx}
-                className="flex flex-col items-center text-center bg-white p-8 rounded-2xl shadow-md hover:shadow-lg transition-shadow"
+                className="flex flex-col items-center text-center bg-white p-8 rounded-2xl shadow-md hover:shadow-lg transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300"
               >
                 <Image
                   src={link.icon}
@@ -70,52 +69,54 @@ export default function Footer() {
         </div>
       </section>
 
-      {/* Testimonial Section */}
-      <section className="bg-white py-16">
+      {/* Testimonial Section (dark) */}
+      <section className="py-16 bg-zinc-950">
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-8">
           <Image
             src="/images/bcwinter1.jpg"
             alt="Narinder Chauhan"
             width={400}
             height={300}
-            className="rounded-xl shadow-lg object-cover"
+            className="rounded-xl object-cover ring-1 ring-zinc-800"
           />
-          <blockquote className="text-gray-800 text-lg leading-relaxed max-w-2xl">
+          <blockquote className="text-zinc-200 text-lg leading-relaxed max-w-2xl">
             &ldquo;Starting Seville was one of the best decisions I&rsquo;ve made professionally.
             The current team is supportive, the vision is bold, and the work is meaningful. It has come a long way since 1983, and I take pride
             in helping shape the future of property management through both innovation and
             tradition.&rdquo;
-            <footer className="mt-4 text-sm text-gray-600 font-medium">
+            <footer className="mt-4 text-sm text-zinc-400 font-medium">
               — Narinder Chauhan, Founder
             </footer>
           </blockquote>
         </div>
       </section>
 
-      {/* Final Footer Section */}
-      <section className="bg-gray-900 text-gray-300 text-sm py-10 px-6">
+      {/* Final Footer Section (black) */}
+      <section className="text-sm py-10 px-6 bg-black border-t border-zinc-800">
         <div className="max-w-6xl mx-auto space-y-8">
-
           {/* Contact Info */}
           <div className="text-left">
             <h4 className="text-white text-xl font-bold mb-2">Seville Investments</h4>
-            <p className="text-gray-400 leading-6">
+            <p className="text-zinc-400 leading-6">
               2233 W 35th Ave<br />
               Vancouver, BC V6M 1J4
             </p>
-            <p className="mt-2 text-gray-400">
-              Phone: <a href="tel:+16048735753" className="hover:underline">(604) 873-5753</a>
+            <p className="mt-2 text-zinc-400">
+              Phone:{' '}
+              <a href="tel:+16048735753" className="hover:text-white transition">
+                (604) 873-5753
+              </a>
             </p>
-            <p className="text-gray-400">Province: British Columbia</p>
+            <p className="text-zinc-400">Province: British Columbia</p>
           </div>
 
           {/* Footer Navigation Links */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 text-center sm:text-left pt-4 border-t border-gray-700">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 text-center sm:text-left pt-4 border-t border-zinc-800">
             {footerLinks.map((item, idx) => (
               <Link
                 key={idx}
                 href={item.href}
-                className="hover:underline text-gray-400 hover:text-white transition-colors"
+                className="text-zinc-400 hover:text-white transition-colors"
               >
                 {item.label}
               </Link>
@@ -123,7 +124,7 @@ export default function Footer() {
           </div>
 
           {/* Copyright */}
-          <div className="text-center text-xs text-gray-500 mt-6">
+          <div className="text-center text-xs text-zinc-500 mt-6">
             &copy; {new Date().getFullYear()} Seville Investments. All rights reserved.
           </div>
         </div>
