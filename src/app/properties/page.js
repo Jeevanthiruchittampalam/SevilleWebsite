@@ -53,43 +53,58 @@ const properties = [
 
 export default function PropertiesPage() {
   return (
-    <div className="flex flex-col min-h-screen font-sans text-black bg-gray-50">
+    <div className="flex flex-col min-h-screen bg-black text-white">
       <Header />
 
-      {/* Hero Section */}
-      <div
-        className="w-full h-[500px] bg-cover bg-center flex items-center justify-center text-white text-center"
-        style={{ backgroundImage: "url('/images/properties3.jpg')" }}
-      >
-        <div className="bg-black bg-opacity-50 p-8 rounded-lg max-w-3xl">
-          <h1 className="text-5xl font-bold mb-2">Our Properties Portfolio</h1>
-          <p className="text-lg italic">Premium residential assets across Metro Vancouver</p>
-        </div>
-      </div>
-
-      {/* Property Listings */}
-      <main className="flex-grow px-6 py-16 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {properties.map((prop, idx) => (
-          <div
-            key={idx}
-            className="bg-white rounded-2xl border border-gray-200 shadow-md hover:shadow-lg transition-shadow p-6 flex flex-col"
-          >
-            {/* Property Image */}
-            <div className="mb-4">
-              <img
-                src={prop.image || DummyThumbnail}
-                alt={prop.name}
-                className="rounded-lg object-cover w-full h-48"
-              />
-            </div>
-            <h2 className="text-xl font-semibold mb-2 text-gray-900">{prop.name}</h2>
-            <p className="text-gray-600 mb-1">{prop.address}</p>
-            <p className="text-gray-700 flex-grow">{prop.description}</p>
-            <button className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-md transition-colors">
-              View Details
-            </button>
+      {/* HERO: pull under header + dark gradient so header sits on black */}
+      <section className="relative -mt-16 pt-28 md:pt-36 pb-12 w-full overflow-hidden min-h-[50vh]">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/properties3.jpg')" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/50 to-black/15" />
+        <div className="relative z-10 flex items-center justify-center h-full px-6">
+          <div className="bg-black/40 backdrop-blur-sm ring-1 ring-white/10 rounded-xl p-8 md:p-10 text-center max-w-3xl">
+            <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-2">Our Properties Portfolio</h1>
+            <p className="text-base md:text-lg text-zinc-200 italic">
+              Premium residential assets across Metro Vancouver
+            </p>
           </div>
-        ))}
+        </div>
+      </section>
+
+      {/* PROPERTY LISTINGS */}
+      <main className="flex-grow px-6 py-16 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {properties.map((prop, idx) => (
+            <div
+              key={idx}
+              className="group rounded-2xl bg-zinc-900/90 ring-1 ring-white/10 p-6 shadow-[0_0_30px_rgba(0,0,0,0.25)] hover:ring-white/20 transition"
+            >
+              {/* Image (bigger) */}
+              <div className="mb-4">
+                <img
+                  src={prop.image || DummyThumbnail}
+                  alt={prop.name}
+                  className="rounded-xl object-cover w-full h-64 md:h-72"
+                />
+              </div>
+
+              {/* Text */}
+              <h2 className="text-xl font-semibold mb-1 text-white">{prop.name}</h2>
+              <p className="text-zinc-300 mb-2">{prop.address}</p>
+              <p className="text-zinc-200">{prop.description}</p>
+
+              {/* Dark-themed CTA with thin white border */}
+              <button
+                className="mt-4 inline-flex items-center justify-center rounded-full border border-white/40 bg-zinc-900/70 px-4 py-2 text-white hover:bg-zinc-800 hover:border-white/60 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
+                aria-label={`View details for ${prop.name}`}
+              >
+                View Details
+              </button>
+            </div>
+          ))}
+        </div>
       </main>
 
       <Footer />

@@ -8,12 +8,12 @@ import GroupWheel from './components/GroupWheel';
 
 // Rotating image backgrounds by sector (used for the lower panel)
 const sectorBackgrounds = {
-  Properties: '/images/Properties2.jpg',
-  Development: '/images/DevelopmentC.jpg',
+  Properties: '/images/PropertiesBlack.jpg',
+  Development: '/images/DevelopmentBlack.jpg',
   Technology: '/images/tech4.jpg',
   'Asset Management': '/images/Management.jpg',
   'Investments and Loans': '/images/Plant2.jpg',
-  'Other Industries': '/images/OtherIndustries.jpg',
+  'Other Industries': '/images/OtherIndustries3.jpg',
 };
 
 const sectors = Object.keys(sectorBackgrounds);
