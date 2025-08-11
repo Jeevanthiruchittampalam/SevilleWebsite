@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "vercel-build": "git lfs install && git lfs pull --include=\"public/videos/**\" && next build"
   },
   "dependencies": {
     "@react-google-maps/api": "^2.20.7",
