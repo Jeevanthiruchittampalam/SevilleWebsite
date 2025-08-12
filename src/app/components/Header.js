@@ -92,7 +92,7 @@ export default function Header() {
 
             {/* Forms pill (links to About Us for now) */}
             <Link
-              href="/aboutus"
+              href="/forms"
               className="group ml-2 inline-flex items-center gap-2 rounded-full border border-emerald-400/40 px-3 py-1.5 font-medium text-[11px] text-emerald-300 hover:bg-emerald-500/10"
             >
               {/* green circular design */}
@@ -152,7 +152,7 @@ export default function Header() {
 
           {/* Forms pill */}
           <Link
-            href="/aboutus"
+            href="/forms"
             className="mt-2 inline-flex items-center gap-2 rounded-full border border-emerald-400/40 px-3 py-1.5 text-sm text-emerald-300"
           >
             <span className="relative flex h-2.5 w-2.5">
