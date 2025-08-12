@@ -21,21 +21,26 @@ export default function Header() {
 
   // Close “Groups” when clicking outside (desktop & mobile)
   useEffect(() => {
-    const onClick = (e) => {
+    function onClick(e) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
         setGroupOpen(false);
       }
-    };
+    }
     if (groupOpen) document.addEventListener('mousedown', onClick);
     return () => document.removeEventListener('mousedown', onClick);
   }, [groupOpen]);
+
+  const closeMenus = () => {
+    setMenuOpen(false);
+    setGroupOpen(false);
+  };
 
   return (
     <>
       <header className="sticky top-0 z-50 h-16 bg-zinc-950/80 backdrop-blur supports-[backdrop-filter]:bg-zinc-950/60 border-b border-zinc-800">
         <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-6">
           {/* Logo */}
-          <Link href="/" className="flex items-center h-full">
+          <Link href="/" className="flex items-center h-full" onClick={closeMenus}>
             <Image
               src={SevilleLogo}
               alt="Seville"
@@ -90,12 +95,11 @@ export default function Header() {
             <Link href="/team" className="hover:text-white/90">Team</Link>
             <Link href="/insights" className="hover:text-white/90">Insights</Link>
 
-            {/* Forms pill (links to About Us for now) */}
+            {/* Forms pill */}
             <Link
               href="/forms"
               className="group ml-2 inline-flex items-center gap-2 rounded-full border border-emerald-400/40 px-3 py-1.5 font-medium text-[11px] text-emerald-300 hover:bg-emerald-500/10"
             >
-              {/* green circular design */}
               <span className="relative flex h-2.5 w-2.5">
                 <span className="absolute inline-flex h-full w-full rounded-full opacity-60 animate-ping bg-emerald-400"></span>
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
@@ -117,6 +121,7 @@ export default function Header() {
             onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden inline-flex items-center justify-center rounded-md p-2 text-zinc-100 hover:bg-zinc-800"
             aria-label="Open menu"
+            aria-expanded={menuOpen}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
@@ -127,15 +132,18 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <nav className="md:hidden bg-zinc-950 text-zinc-100 border-b border-zinc-800 px-4 py-3 space-y-2">
-          <Link href="/" className="block py-2">Home</Link>
-          <Link href="/forrent" className="block py-2">For Rent</Link>
-          <Link href="/forsale" className="block py-2">For Sale</Link>
-          <Link href="/map" className="block py-2">Map</Link>
+        <nav className="md:hidden bg-zinc-950 text-zinc-100 border-b border-zinc-800 px-4 py-3 space-y-2 max-h-[calc(100vh-4rem)] overflow-y-auto">
+          <Link href="/" className="block py-2" onClick={closeMenus}>Home</Link>
+          <Link href="/forrent" className="block py-2" onClick={closeMenus}>For Rent</Link>
+          <Link href="/forsale" className="block py-2" onClick={closeMenus}>For Sale</Link>
+          <Link href="/map" className="block py-2" onClick={closeMenus}>Map</Link>
+          <Link href="/team" className="block py-2" onClick={closeMenus}>Team</Link>
+          <Link href="/insights" className="block py-2" onClick={closeMenus}>Insights</Link>
 
           <button
             onClick={() => setGroupOpen(!groupOpen)}
             className="flex w-full items-center justify-between py-2"
+            aria-expanded={groupOpen}
           >
             <span>Groups</span>
             <span className="text-xs">{groupOpen ? '▲' : '▼'}</span>
@@ -143,17 +151,22 @@ export default function Header() {
           {groupOpen && (
             <div className="pl-3">
               {sectorItems.map((item) => (
-                <Link key={item.href} href={item.href} className="block py-1.5 text-zinc-300">
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="block py-1.5 text-zinc-300"
+                  onClick={closeMenus}
+                >
                   {item.name}
                 </Link>
               ))}
             </div>
           )}
 
-          {/* Forms pill */}
           <Link
             href="/forms"
             className="mt-2 inline-flex items-center gap-2 rounded-full border border-emerald-400/40 px-3 py-1.5 text-sm text-emerald-300"
+            onClick={closeMenus}
           >
             <span className="relative flex h-2.5 w-2.5">
               <span className="absolute inline-flex h-full w-full rounded-full opacity-60 animate-ping bg-emerald-400"></span>
@@ -165,6 +178,7 @@ export default function Header() {
           <Link
             href="/myseville"
             className="block rounded-full border border-zinc-700 px-4 py-2 text-center"
+            onClick={closeMenus}
           >
             MySeville Sign In
           </Link>
