@@ -73,12 +73,12 @@ function FilteredListings() {
   return (
     <>
       {/* Filters (lighter grey, glassy) */}
-      <div className="bg-zinc-900/80 backdrop-blur-md rounded-2xl ring-1 ring-zinc-700 p-6 mx-auto mt-8 max-w-5xl flex flex-col md:flex-row gap-6 justify-between items-center text-white shadow-[0_10px_30px_rgba(0,0,0,0.3)]">
+      <div className="bg-zinc-800/70 backdrop-blur-md rounded-2xl ring-1 ring-zinc-600 p-6 mx-auto mt-8 max-w-5xl flex flex-col md:flex-row gap-6 justify-between items-center text-white shadow-[0_10px_30px_rgba(0,0,0,0.3)]">
         {/* City */}
         <div className="flex flex-col w-full md:w-auto">
-          <label className="text-xs font-semibold tracking-wide text-zinc-300 mb-1">CITY</label>
+          <label className="text-xs font-semibold tracking-wide text-zinc-200 mb-1">CITY</label>
           <select
-            className="bg-zinc-900 text-white border border-zinc-600 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+            className="bg-zinc-800 text-white border border-zinc-600 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
             value={selectedCity}
             onChange={(e) => setSelectedCity(e.target.value)}
           >
@@ -91,9 +91,9 @@ function FilteredListings() {
 
         {/* Bedrooms */}
         <div className="flex flex-col w-full md:w-auto">
-          <label className="text-xs font-semibold tracking-wide text-zinc-300 mb-1">BEDROOMS</label>
+          <label className="text-xs font-semibold tracking-wide text-zinc-200 mb-1">BEDROOMS</label>
           <select
-            className="bg-zinc-900 text-white border border-zinc-600 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+            className="bg-zinc-800 text-white border border-zinc-600 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
             value={selectedBedroom}
             onChange={(e) => setSelectedBedroom(e.target.value)}
           >
@@ -106,7 +106,7 @@ function FilteredListings() {
 
         {/* Price */}
         <div className="flex flex-col items-center w-full md:w-auto">
-          <label className="text-xs font-semibold tracking-wide text-zinc-300 mb-1">MAX PRICE</label>
+          <label className="text-xs font-semibold tracking-wide text-zinc-200 mb-1">MAX PRICE</label>
           <span className="text-sm font-semibold text-white/90 mb-1">${priceLimit}</span>
           <input
             type="range"
@@ -120,6 +120,11 @@ function FilteredListings() {
         </div>
       </div>
 
+      {/* Results count */}
+      <div className="max-w-5xl mx-auto px-4 mt-4 text-sm text-zinc-400">
+        {filteredListings.length} match{filteredListings.length === 1 ? '' : 'es'}
+      </div>
+
       {/* Listings (lighter grey cards) */}
       <main className="flex-grow px-4 py-12 max-w-5xl mx-auto space-y-16">
         {filteredListings.length === 0 && (
@@ -131,7 +136,7 @@ function FilteredListings() {
         {filteredListings.map((listing) => (
           <section
             key={listing.id}
-            className="bg-zinc-900/80 backdrop-blur-md rounded-2xl ring-1 ring-zinc-700 p-6 shadow-[0_10px_30px_rgba(0,0,0,0.35)] hover:ring-white/20 transition"
+            className="bg-zinc-800/70 backdrop-blur-md rounded-2xl ring-1 ring-zinc-600 p-6 shadow-[0_10px_30px_rgba(0,0,0,0.35)] hover:ring-white/20 transition"
           >
             <h2 className="text-2xl font-semibold mb-2 text-white">{listing.title}</h2>
 
@@ -151,9 +156,10 @@ function FilteredListings() {
                   key={idx}
                   src={`/images/${listing.folder}/${img}`}
                   alt={`${listing.folder} image ${idx + 1}`}
-                  width={400}
-                  height={300}
-                  className="rounded-lg w-full h-auto object-cover"
+                  width={640}
+                  height={480}
+                  className="rounded-lg w-full h-auto object-cover transition-transform duration-300 hover:scale-[1.02]"
+                  loading={idx > 2 ? 'lazy' : 'eager'}
                 />
               ))}
             </div>
@@ -210,8 +216,8 @@ export default function ForRentPage() {
     <div className="flex flex-col min-h-screen bg-black text-white">
       <Header />
 
-      {/* HERO: pull under header + dark gradient so header sits on black */}
-      <section className="relative -mt-16 pt-28 md:pt-36 pb-12 w-full overflow-hidden min-h-[50vh]">
+      {/* HERO: taller to match other pages */}
+      <section className="relative -mt-16 pt-28 md:pt-36 pb-12 w-full overflow-hidden min-h-[60vh]">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('/images/forrentbg.jpg')" }}

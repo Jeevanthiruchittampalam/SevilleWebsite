@@ -26,8 +26,8 @@ export default function ManagementPage() {
     <div className="flex flex-col min-h-screen bg-black text-white">
       <Header />
 
-      {/* HERO: pull under header + dark gradient so header sits on black */}
-      <section className="relative -mt-16 pt-28 md:pt-36 pb-12 w-full overflow-hidden min-h-[50vh]">
+      {/* HERO: larger image, consistent dark gradient under sticky header */}
+      <section className="relative -mt-16 pt-28 md:pt-36 pb-12 w-full overflow-hidden min-h-[60vh] md:min-h-[70vh]">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('/images/YELLOWUNUSED.jpg')" }}
@@ -36,7 +36,7 @@ export default function ManagementPage() {
         <div className="relative z-10 flex items-center justify-center h-full px-6">
           <div className="bg-black/40 backdrop-blur-sm ring-1 ring-white/10 rounded-xl p-8 md:p-10 text-center max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-2">
-              Property & Asset Management
+              Property &amp; Asset Management
             </h1>
             <p className="text-base md:text-lg text-zinc-200 italic">
               Rely on Seville’s expertise to grow value, enhance tenant satisfaction, and drive operational efficiency.
@@ -55,14 +55,14 @@ export default function ManagementPage() {
         </ul>
       </section>
 
-      {/* ASSET TYPES (dark cards) */}
+      {/* ASSET TYPES (glassy dark cards) */}
       <section className="px-6 pb-16 max-w-5xl mx-auto">
         <h2 className="text-3xl font-semibold mb-6 text-center">Assets We Manage</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {assetTypes.map((asset, idx) => (
             <div
               key={idx}
-              className="rounded-xl bg-zinc-950/70 ring-1 ring-zinc-800 p-5 text-center text-white hover:ring-white/20 transition"
+              className="rounded-xl bg-zinc-950/70 backdrop-blur-md ring-1 ring-zinc-800 p-5 text-center hover:ring-white/20 transition"
             >
               <h3 className="text-lg font-medium">{asset}</h3>
             </div>
@@ -85,9 +85,9 @@ export default function ManagementPage() {
         </p>
       </section>
 
-      {/* CONTACT / NEXT STEPS (dark glassy card + thin white border button) */}
+      {/* CONTACT / NEXT STEPS */}
       <section className="px-6 pb-20 max-w-5xl mx-auto">
-        <div className="rounded-2xl bg-zinc-950/70 ring-1 ring-zinc-800 p-8 text-center">
+        <div className="rounded-2xl bg-zinc-950/70 backdrop-blur-md ring-1 ring-zinc-800 p-8 text-center">
           <h2 className="text-3xl font-semibold mb-4">Want to Learn More?</h2>
           <p className="text-zinc-300 mb-6">
             Contact our management team to request a proposal or set up a consultation.

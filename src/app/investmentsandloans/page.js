@@ -16,6 +16,25 @@ const sectors = [
 // Vibrant on dark
 const COLORS = ['#FACC15', '#C084FC', '#34D399', '#38BDF8', '#FB923C'];
 
+const RADIAN = Math.PI / 180;
+const renderLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
+  const r = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const x = cx + r * Math.cos(-midAngle * RADIAN);
+  const y = cy + r * Math.sin(-midAngle * RADIAN);
+  return (
+    <text
+      x={x}
+      y={y}
+      fill="#fff"
+      fontSize={12}
+      textAnchor={x > cx ? 'start' : 'end'}
+      dominantBaseline="central"
+    >
+      {`${Math.round(percent * 100)}%`}
+    </text>
+  );
+};
+
 export default function InvestmentsAndLoansPage() {
   const [formData, setFormData] = useState({ name: '', contact: '', purpose: '', amount: '' });
 
@@ -30,7 +49,6 @@ export default function InvestmentsAndLoansPage() {
     <div className="flex flex-col min-h-screen bg-black text-white">
       <Header />
 
-      {/* HERO: pull under header + dark gradient so header sits on black */}
       <section className="relative -mt-16 pt-28 md:pt-36 pb-12 w-full overflow-hidden min-h-[50vh]">
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -48,7 +66,7 @@ export default function InvestmentsAndLoansPage() {
       </section>
 
       <main className="px-6 py-16 max-w-6xl mx-auto space-y-16">
-        {/* Sector Allocation (dark card) */}
+        {/* Portfolio Donut */}
         <section className="rounded-2xl bg-zinc-950/70 backdrop-blur-md ring-1 ring-zinc-800 p-8">
           <h2 className="text-3xl font-semibold mb-6">Our Investment Portfolio by Sector %</h2>
           <div className="h-96">
@@ -60,8 +78,10 @@ export default function InvestmentsAndLoansPage() {
                   nameKey="name"
                   cx="50%"
                   cy="50%"
+                  innerRadius={70}
                   outerRadius={130}
                   labelLine={false}
+                  label={renderLabel}
                 >
                   {sectors.map((entry, idx) => (
                     <Cell key={entry.name} fill={COLORS[idx % COLORS.length]} stroke="#0b0b0b" />
@@ -69,6 +89,7 @@ export default function InvestmentsAndLoansPage() {
                 </Pie>
                 <Legend verticalAlign="bottom" height={36} wrapperStyle={{ color: '#e5e7eb' }} />
                 <Tooltip
+                  formatter={(val, name) => [`${val}%`, name]}
                   contentStyle={{ background: '#111827', border: '1px solid #27272a', color: '#e5e7eb' }}
                   itemStyle={{ color: '#e5e7eb' }}
                   labelStyle={{ color: '#9ca3af' }}
@@ -100,7 +121,7 @@ export default function InvestmentsAndLoansPage() {
           </ol>
         </section>
 
-        {/* Inquiry Form (dark glassy card + thin white border button) */}
+        {/* Inquiry Form */}
         <section className="rounded-2xl bg-zinc-950/70 backdrop-blur-md ring-1 ring-zinc-800 p-8">
           <h2 className="text-3xl font-semibold mb-6 text-center">Loan &amp; Investment Inquiry</h2>
           <form onSubmit={handleSubmit} className="space-y-6 max-w-xl mx-auto">
@@ -133,14 +154,20 @@ export default function InvestmentsAndLoansPage() {
                     value={formData[field]}
                     onChange={handleChange}
                     className="w-full bg-zinc-900 text-white placeholder-zinc-500 border border-zinc-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
-                    placeholder={field === 'amount' ? 'e.g., 250,000' : field === 'contact' ? 'you@example.com or (604) 123-4567' : 'Your full name'}
+                    placeholder={
+                      field === 'amount'
+                        ? 'e.g., 250,000'
+                        : field === 'contact'
+                        ? 'you@example.com or (604) 123-4567'
+                        : 'Your full name'
+                    }
                   />
                 )}
               </div>
             ))}
             <button
               type="submit"
-              className="block mx-auto inline-flex items-center justify-center rounded-full border border-white/40 bg-zinc-900/70 px-6 py-2 text-white hover:bg-zinc-800 hover:border-white/60 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
+              className="flex items-center justify-center mx-auto w-fit rounded-full border border-white/40 bg-zinc-900/70 px-6 py-2 text-white hover:bg-zinc-800 hover:border-white/60 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
             >
               Submit Inquiry
             </button>

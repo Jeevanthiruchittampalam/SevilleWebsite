@@ -40,32 +40,48 @@ export default function BlogPage() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen font-sans text-black bg-gray-50">
+    <div className="flex flex-col min-h-screen bg-black text-white">
       <Header />
 
-      {/* Hero Section */}
-      <div
-        className="w-full h-[500px] bg-cover bg-center flex items-center justify-center text-white text-center"
-        style={{ backgroundImage: "url('/images/blog2.jpg')" }}
-      >
-        <div className="bg-black bg-opacity-40 p-10 rounded-lg max-w-2xl">
-          <h1 className="text-5xl font-bold mb-2 tracking-tight">Seville Investments Blog</h1>
-          <p className="text-lg italic">The latest on BC real estate, landlord policy & market trends</p>
+      {/* HERO: larger image (600px) with dark overlay */}
+      <section className="relative -mt-16 w-full h-[600px] overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/blog2.jpg')" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/50 to-black/10" />
+        <div className="relative z-10 flex items-center justify-center h-full px-6">
+          <div className="bg-black/40 backdrop-blur-sm ring-1 ring-white/10 rounded-xl p-8 md:p-10 text-center max-w-3xl">
+            <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-2">
+              Seville Investments Blog
+            </h1>
+            <p className="text-base md:text-lg text-zinc-200 italic">
+              The latest on BC real estate, landlord policy &amp; market trends
+            </p>
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Blog Content */}
-      <main className="flex-grow px-4 py-12 max-w-5xl mx-auto space-y-10">
+      {/* POSTS */}
+      <main className="flex-grow px-6 py-16 max-w-6xl mx-auto space-y-8">
         {posts.map((post, idx) => (
           <article
             key={idx}
-            className="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition-shadow duration-300 border border-gray-200"
+            className="rounded-2xl bg-zinc-950/70 backdrop-blur-md ring-1 ring-zinc-800 p-6 md:p-8 shadow-[0_0_30px_rgba(0,0,0,0.25)] hover:ring-white/20 transition"
           >
-            <div className="mb-2 text-sm text-gray-500">{post.date}</div>
-            <h2 className="text-2xl font-bold mb-4 text-gray-900">{post.title}</h2>
-            {post.content.map((para, i) => (
-              <p key={i} className="text-gray-700 mb-3 leading-relaxed">{para}</p>
-            ))}
+            <div className="mb-2 text-xs font-medium tracking-wide text-zinc-400">
+              {post.date}
+            </div>
+            <h2 className="text-2xl md:text-3xl font-semibold text-white mb-4">
+              {post.title}
+            </h2>
+            <div className="prose prose-invert max-w-none">
+              {post.content.map((para, i) => (
+                <p key={i} className="text-zinc-300 leading-relaxed mb-3">
+                  {para}
+                </p>
+              ))}
+            </div>
           </article>
         ))}
       </main>

@@ -8,16 +8,13 @@ export default function AboutPage() {
     <div className="flex flex-col min-h-screen bg-black text-white">
       <Header />
 
-      {/* HERO: pull under header + dark gradient on top */}
-      <section className="relative -mt-16 pt-28 md:pt-36 pb-12 min-h-[60vh] w-full overflow-hidden">
-        {/* Background image */}
+      {/* HERO: fixed 600px with dark overlay */}
+      <section className="relative -mt-16 w-full h-[600px] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('/images/van1.jpg')" }}
         />
-        {/* Dark overlay (keeps header area dark) */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/50 to-black/10" />
-        {/* Content */}
         <div className="relative z-10 flex items-center justify-center h-full px-6">
           <div className="bg-black/40 backdrop-blur-sm ring-1 ring-white/10 rounded-xl p-8 md:p-10 text-center max-w-2xl">
             <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-3">About Us</h1>
@@ -28,48 +25,50 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* MAIN CONTENT (dark theme) */}
-      <main className="flex-grow px-6 py-16 max-w-4xl mx-auto text-center sm:text-left space-y-6">
-        <p className="text-zinc-300 leading-relaxed">
-          <strong className="text-white">Seville Investments</strong> is a proudly Canadian, medium-scale
-          management company rooted in the heart of the Lower Mainland. Founded in <strong>1983</strong>,
-          we have grown over the decades into a diversified organization focused on:
-        </p>
+      {/* MAIN CONTENT (glassy card for readability) */}
+      <main className="flex-grow px-6 py-16 max-w-4xl mx-auto">
+        <section className="rounded-2xl bg-zinc-950/70 backdrop-blur-md ring-1 ring-zinc-800 p-8 md:p-10 space-y-6 shadow-[0_0_30px_rgba(0,0,0,0.25)]">
+          <p className="text-zinc-300 leading-relaxed">
+            <strong className="text-white">Seville Investments</strong> is a proudly Canadian, medium-scale
+            management company rooted in the heart of the Lower Mainland. Founded in <strong>1983</strong>,
+            we have grown over the decades into a diversified organization focused on:
+          </p>
 
-        <ul className="list-disc list-inside text-zinc-300 leading-relaxed marker:text-zinc-500">
-          <li>Property &amp; Asset Management</li>
-          <li>Construction &amp; Development</li>
-          <li>Apartment and Condo Rentals</li>
-          <li>Private Loans &amp; Investments</li>
-          <li>Custom-built AI Tools for Data Analysis</li>
-          <li>In-house Software &amp; Systems Design</li>
-        </ul>
+          <ul className="list-disc list-inside text-zinc-300 leading-relaxed marker:text-zinc-500">
+            <li>Property &amp; Asset Management</li>
+            <li>Construction &amp; Development</li>
+            <li>Apartment and Condo Rentals</li>
+            <li>Private Loans &amp; Investments</li>
+            <li>Custom-built AI Tools for Data Analysis</li>
+            <li>In-house Software &amp; Systems Design</li>
+          </ul>
 
-        <p className="text-zinc-300 leading-relaxed">
-          We currently manage <strong>8 buildings</strong> across the Greater Vancouver Area, totaling
-          over <strong>{8 * 8 * 8} units</strong>. With a strong foundation and experienced team, we are
-          actively preparing for major expansion in both scale and service offerings.
-        </p>
+          <p className="text-zinc-300 leading-relaxed">
+            We currently manage <strong>8 buildings</strong> across the Greater Vancouver Area, totaling
+            over <strong>{8 * 8 * 8} units</strong>. With a strong foundation and experienced team, we are
+            actively preparing for major expansion in both scale and service offerings.
+          </p>
 
-        <p className="text-zinc-300 leading-relaxed">
-          At Seville, we are committed to our clients. Integrity, reliability, and responsive service are
-          the core values that guide our operations. We prioritize long-term relationships and pride
-          ourselves on understanding the unique needs of each property and client.
-        </p>
+          <p className="text-zinc-300 leading-relaxed">
+            At Seville, we are committed to our clients. Integrity, reliability, and responsive service are
+            the core values that guide our operations. We prioritize long-term relationships and pride
+            ourselves on understanding the unique needs of each property and client.
+          </p>
 
-        <p className="text-zinc-300 leading-relaxed">
-          Our entrepreneurial mindset fuels constant innovation. By leveraging our own AI-driven tools and
-          custom-built systems, we continue to push boundaries in how property management is approached in
-          the 21st century.
-        </p>
+          <p className="text-zinc-300 leading-relaxed">
+            Our entrepreneurial mindset fuels constant innovation. By leveraging our own AI-driven tools and
+            custom-built systems, we continue to push boundaries in how property management is approached in
+            the 21st century.
+          </p>
 
-        <p className="text-zinc-300 leading-relaxed">
-          As we look to the future, our plans for growth are bold — but grounded in the same principles
-          that brought us here: service, innovation, and integrity.
-        </p>
+          <p className="text-zinc-300 leading-relaxed">
+            As we look to the future, our plans for growth are bold — but grounded in the same principles
+            that brought us here: service, innovation, and integrity.
+          </p>
+        </section>
       </main>
 
-      {/* THE SEVILLE DIFFERENCE (dark section + white cards) */}
+      {/* THE SEVILLE DIFFERENCE */}
       <section className="bg-zinc-950 border-t border-zinc-800 py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-semibold text-center mb-12">The Seville Difference</h2>
@@ -91,7 +90,7 @@ export default function AboutPage() {
             </blockquote>
           </div>
 
-          {/* Features Grid (white cards like your Quick Links) */}
+          {/* Features Grid (white cards matching Quick Links) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="bg-white shadow-md rounded-2xl p-6 text-center">
               <img src="/images/icons/skyscrapers.png" alt="Trusted Expertise" className="w-12 h-12 mx-auto mb-4" />

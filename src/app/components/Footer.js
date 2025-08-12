@@ -6,7 +6,6 @@ import Image from 'next/image';
 export default function Footer() {
   const footerLinks = [
     { label: 'About Us', href: '/aboutus' },
-    // { label: 'Commercial', href: '/commercial' },
     { label: 'Community', href: '/community' },
     { label: 'Promotions', href: '/promotions' },
     { label: 'Rental Process', href: '/rentalprocess' },
@@ -21,60 +20,69 @@ export default function Footer() {
       title: 'mySeville Portal',
       subtitle: 'Login to your account',
       href: '/myseville',
-      icon: '/images/icons/profile.png',
+      icon: '/images/icons/profilew.png',
     },
     {
       title: 'About Seville',
       subtitle: 'Why Seville Investment Services',
       href: '/aboutus',
-      icon: '/images/icons/building.png',
+      icon: '/images/icons/buildingw.png',
     },
     {
       title: 'For Rent',
       subtitle: 'Explore Available Rentals',
       href: '/forrent',
-      icon: '/images/icons/exam.png',
+      icon: '/images/icons/examw.png',
     },
   ];
 
   return (
     <footer className="mt-20 bg-black text-zinc-300">
-      {/* Seville Quick Links (white cards like before) */}
+      {/* Quick Links – dark glass cards with LARGE white icons */}
       <section className="py-16 bg-zinc-950 border-t border-zinc-800">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl font-semibold text-white text-center mb-10">
             Seville Quick Links
           </h2>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {quickLinks.map((link, idx) => (
+            {quickLinks.map((link) => (
               <Link
+                key={link.title}
                 href={link.href}
-                key={idx}
-                className="flex flex-col items-center text-center bg-white p-8 rounded-2xl shadow-md hover:shadow-lg transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300"
+                className="group rounded-2xl bg-zinc-900/70 backdrop-blur-md ring-1 ring-zinc-800 p-8 flex flex-col items-center gap-6 hover:ring-white/20 hover:bg-zinc-900 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20"
               >
-                <Image
-                  src={link.icon}
-                  alt={link.title}
-                  width={60}
-                  height={60}
-                  className="mb-4"
-                />
-                <h3 className="text-xl font-semibold text-gray-900 mb-1">
-                  {link.title}
-                </h3>
-                <p className="text-gray-600 text-sm">{link.subtitle}</p>
+                {/* BIG icon */}
+                <span className="flex h-20 w-20 items-center justify-center">
+                  <Image
+                    src={link.icon}
+                    alt=""
+                    width={72}
+                    height={72}
+                    className="select-none opacity-95 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-200"
+                    aria-hidden="true"
+                  />
+                </span>
+
+                {/* Text */}
+                <div className="text-center">
+                  <h3 className="text-lg font-semibold text-white group-hover:text-white/90">
+                    {link.title}
+                  </h3>
+                  <p className="text-sm text-zinc-400">{link.subtitle}</p>
+                </div>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Testimonial Section (dark) */}
+      {/* Testimonial */}
       <section className="py-16 bg-zinc-950">
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-8">
           <Image
-            src="/images/bcwinter1.jpg"
-            alt="Narinder Chauhan"
+            src="/images/purpleleaf.jpg"
+            alt="Vancouver winter skyline"
             width={400}
             height={300}
             className="rounded-xl object-cover ring-1 ring-zinc-800"
@@ -91,10 +99,10 @@ export default function Footer() {
         </div>
       </section>
 
-      {/* Final Footer Section (black) */}
+      {/* Final Footer */}
       <section className="text-sm py-10 px-6 bg-black border-t border-zinc-800">
         <div className="max-w-6xl mx-auto space-y-8">
-          {/* Contact Info */}
+          {/* Contact */}
           <div className="text-left">
             <h4 className="text-white text-xl font-bold mb-2">Seville Investments</h4>
             <p className="text-zinc-400 leading-6">
@@ -110,11 +118,11 @@ export default function Footer() {
             <p className="text-zinc-400">Province: British Columbia</p>
           </div>
 
-          {/* Footer Navigation Links */}
+          {/* Nav links */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 text-center sm:text-left pt-4 border-t border-zinc-800">
-            {footerLinks.map((item, idx) => (
+            {footerLinks.map((item) => (
               <Link
-                key={idx}
+                key={item.label}
                 href={item.href}
                 className="text-zinc-400 hover:text-white transition-colors"
               >
