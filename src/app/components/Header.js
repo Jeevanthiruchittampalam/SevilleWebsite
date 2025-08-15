@@ -114,6 +114,14 @@ export default function Header() {
             >
               MySeville Sign In
             </Link>
+
+            {/* NEW: Rental Application CTA (to the right of MySeville) */}
+            <Link
+              href="/apply"
+              className="inline-flex items-center rounded-full border border-yellow-400/60 px-4 py-1.5 text-[11px] font-semibold text-yellow-300 hover:bg-yellow-500/10"
+            >
+              Rental Application
+            </Link>
           </nav>
 
           {/* Mobile Hamburger */}
@@ -163,6 +171,7 @@ export default function Header() {
             </div>
           )}
 
+          {/* Forms */}
           <Link
             href="/forms"
             className="mt-2 inline-flex items-center gap-2 rounded-full border border-emerald-400/40 px-3 py-1.5 text-sm text-emerald-300"
@@ -175,12 +184,22 @@ export default function Header() {
             Forms
           </Link>
 
+          {/* MySeville */}
           <Link
             href="/myseville"
             className="block rounded-full border border-zinc-700 px-4 py-2 text-center"
             onClick={closeMenus}
           >
             MySeville Sign In
+          </Link>
+
+          {/* NEW: Rental Application (mobile) */}
+          <Link
+            href="/apply"
+            className="block rounded-full border border-yellow-400/60 px-4 py-2 text-center text-yellow-300 mt-1"
+            onClick={closeMenus}
+          >
+            Rental Application
           </Link>
         </nav>
       )}
