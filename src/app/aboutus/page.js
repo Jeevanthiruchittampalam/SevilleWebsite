@@ -71,7 +71,7 @@ export default function AboutPage() {
               <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
                 <span className="text-[11px] md:text-xs px-3 py-1 rounded-full bg-white/10 ring-1 ring-white/15">Est. 1983</span>
                 <span className="text-[11px] md:text-xs px-3 py-1 rounded-full bg-white/10 ring-1 ring-white/15">8 Buildings • 500+ Units</span>
-                <span className="text-[11px] md:text-xs px-3 py-1 rounded-full bg-white/10 ring-1 ring-white/15">AI-Driven Operations</span>
+                <span className="text-[11px] md:text-xs px-3 py-1 rounded-full bg-white/10 ring-1 ring-white/15">Technology-Driven Operations</span>
               </div>
             </div>
           </Reveal>
@@ -91,7 +91,7 @@ export default function AboutPage() {
           <div className="flex flex-col lg:flex-row items-center justify-center gap-10 mb-16">
             <Reveal className="w-full max-w-md" delay={50}>
               <img
-                src="/images/van2.jpg"
+                src="/images/rainbowcubes.jpg"
                 alt="Vancouver"
                 className="rounded-xl ring-1 ring-zinc-800 object-cover w-full shadow-[0_15px_40px_rgba(0,0,0,0.35)]"
               />
@@ -102,7 +102,7 @@ export default function AboutPage() {
                 Our commitment to transparency, adaptability, and people-first service is what truly
                 sets us apart.&rdquo;
                 <div className="mt-4 text-right text-sm not-italic text-zinc-400">
-                  — Seville Investments
+                 
                 </div>
               </blockquote>
             </Reveal>

@@ -88,7 +88,7 @@ export default function Footer() {
             className="rounded-xl object-cover ring-1 ring-zinc-800"
           />
           <blockquote className="text-zinc-200 text-lg leading-relaxed max-w-2xl">
-            &ldquo;Starting Seville was one of the best decisions I&rsquo;ve made professionally.
+            &ldquo;Seville is, and always has been, about bringing people together and fostering a community.
             The current team is supportive, the vision is bold, and the work is meaningful. It has come a long way since 1983, and I take pride
             in helping shape the future of property management through both innovation and
             tradition.&rdquo;

@@ -12,7 +12,7 @@ export default function ContactPage() {
       <section className="relative -mt-16 w-full h-[600px] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/contactus3.png')" }}
+          style={{ backgroundImage: "url('/images/paintsplash.jpg')" }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/50 to-black/10" />
         <div className="relative z-10 flex items-center justify-center h-full px-6">

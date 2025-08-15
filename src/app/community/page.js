@@ -103,7 +103,7 @@ export default function CommunityPage() {
       <section className="relative -mt-16 w-full h-[600px] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/community.jpg')" }}
+          style={{ backgroundImage: "url('/images/Properties2.jpg')" }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/50 to-black/15" />
         <div className="relative z-10 flex items-center justify-center h-full px-6">
