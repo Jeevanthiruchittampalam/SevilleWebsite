@@ -35,10 +35,19 @@ export default function Header() {
     setGroupOpen(false);
   };
 
+  const HEADER_H = 64; // matches h-16
+
   return (
     <>
-      <header className="sticky top-0 z-50 h-16 bg-zinc-950/80 backdrop-blur supports-[backdrop-filter]:bg-zinc-950/60 border-b border-zinc-800">
-        <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-6">
+      {/* FIXED header (always visible) + safe-area padding for iOS notch */}
+      <header
+        className="fixed top-0 inset-x-0 z-50 bg-zinc-950/80 backdrop-blur supports-[backdrop-filter]:bg-zinc-950/60 border-b border-zinc-800"
+        style={{ paddingTop: 'env(safe-area-inset-top)' }}
+      >
+        <div
+          className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6"
+          style={{ height: HEADER_H }}
+        >
           {/* Logo */}
           <Link href="/" className="flex items-center h-full" onClick={closeMenus}>
             <Image
@@ -46,7 +55,7 @@ export default function Header() {
               alt="Seville"
               width={120}
               height={120}
-              className="h-10 w-auto"
+              className="h-9 sm:h-10 w-auto"
               priority
             />
           </Link>
@@ -93,7 +102,7 @@ export default function Header() {
             </div>
 
             <Link href="/team" className="hover:text-white/90">Team</Link>
-            <Link href="/insights" className="hover:text-white/90">Insights</Link>
+            {/* <Link href="/insights" className="hover:text-white/90">Insights</Link> */}
 
             {/* Forms pill */}
             <Link
@@ -138,15 +147,18 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu — fixed panel under header */}
       {menuOpen && (
-        <nav className="md:hidden bg-zinc-950 text-zinc-100 border-b border-zinc-800 px-4 py-3 space-y-2 max-h-[calc(100vh-4rem)] overflow-y-auto">
+        <nav
+          className="md:hidden fixed inset-x-0 bottom-0 bg-zinc-950 text-zinc-100 border-b border-zinc-800 px-4 py-3 space-y-2 overflow-y-auto z-40"
+          style={{ top: `calc(${HEADER_H}px + env(safe-area-inset-top))` }}
+        >
           <Link href="/" className="block py-2" onClick={closeMenus}>Home</Link>
           <Link href="/forrent" className="block py-2" onClick={closeMenus}>For Rent</Link>
           <Link href="/forsale" className="block py-2" onClick={closeMenus}>For Sale</Link>
           <Link href="/map" className="block py-2" onClick={closeMenus}>Map</Link>
           <Link href="/team" className="block py-2" onClick={closeMenus}>Team</Link>
-          <Link href="/insights" className="block py-2" onClick={closeMenus}>Insights</Link>
+          {/* <Link href="/insights" className="block py-2" onClick={closeMenus}>Insights</Link> */}
 
           <button
             onClick={() => setGroupOpen(!groupOpen)}

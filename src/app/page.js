@@ -104,7 +104,8 @@ export default function Home() {
       <Header />
 
       {/* HERO: video + intro text + scroll arrow */}
-      <main className="relative -mt-16 pt-28 md:pt-36 pb-16 min-h-screen w-full flex flex-col items-center overflow-hidden">
+      {/* offset content for fixed header (64px) + iOS safe area */}
+      <main className="relative pt-[calc(64px+env(safe-area-inset-top))] md:pt-[calc(64px+env(safe-area-inset-top))] pb-16 min-h-screen w-full flex flex-col items-center overflow-hidden">
         {/* Background video */}
         <video
           key={vidIndex}
