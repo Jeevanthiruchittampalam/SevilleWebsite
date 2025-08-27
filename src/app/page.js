@@ -124,7 +124,7 @@ export default function Home() {
         <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/80 via-black/45 to-black/0" />
 
         {/* Intro content */}
-        <section className="relative z-20 w-full max-w-4xl mx-auto px-6 text-center">
+        <section className="relative z-20 w-full max-w-4xl mx-auto px-6 text-center mt-12 md:mt-16">
           <h1 className="font-semibold tracking-tight text-white text-3xl sm:text-4xl md:text-5xl leading-[1.1]">
             Welcome to Seville Investments
           </h1>
