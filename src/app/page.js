@@ -28,28 +28,66 @@ const videoOrder = [
   '/videos/OI1.mp4','/videos/OI2.mp4','/videos/OI3.mp4',
 ];
 
+// ===== helpers for truly seamless swap =====
+const HAVE_ENOUGH_DATA = 4;
+const OVERLAP_SECONDS = 0.25; // play next video slightly before the current ends
+
+function waitForCanPlay(el) {
+  return new Promise((resolve) => {
+    if (!el) return resolve();
+    if (el.readyState >= HAVE_ENOUGH_DATA) return resolve();
+    const on = () => {
+      el.removeEventListener('canplaythrough', on);
+      el.removeEventListener('canplay', on);
+      resolve();
+    };
+    el.addEventListener('canplaythrough', on, { once: true });
+    el.addEventListener('canplay', on, { once: true });
+  });
+}
+
+function waitForFirstFrame(el) {
+  return new Promise((resolve) => {
+    if (!el) return resolve();
+    // If it's already playing and advanced, resolve
+    if (!el.paused && el.currentTime > 0) return resolve();
+
+    // Prefer a decoded-frame signal
+    if ('requestVideoFrameCallback' in el) {
+      el.requestVideoFrameCallback(() => resolve());
+      return;
+    }
+    // Fallback: 'playing'
+    const onPlaying = () => {
+      el.removeEventListener('playing', onPlaying);
+      resolve();
+    };
+    el.addEventListener('playing', onPlaying, { once: true });
+  });
+}
+
 export default function Home() {
   const [activeSector, setActiveSector] = useState(sectors[0]);
   const [userSelected, setUserSelected] = useState(false);
 
-  // Indexes for the playlist
+  // Playlist pointers
   const [currentIndex, setCurrentIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(1);
 
-  // Which video element is currently visible (front buffer): 'A' or 'B'
+  // Which element is front-most: 'A' or 'B'
   const [front, setFront] = useState('A');
 
-  // Refs to the two video elements
   const vidARef = useRef(null);
   const vidBRef = useRef(null);
-
-  // Whether we've already primed the next video for the current cycle
-  const primedRef = useRef(false);
-
-  // Ref for the explore section (search + wheel)
   const exploreRef = useRef(null);
 
-  // Preload sector images so the lower panel swaps instantly
+  const primedRef = useRef(false);
+  const swapScheduledRef = useRef(false);
+  const rafIdRef = useRef(null);
+
+  const nextOf = (i) => (i + 1) % videoOrder.length;
+
+  // Preload sector images
   useEffect(() => {
     Object.values(sectorBackgrounds).forEach((src) => {
       const img = new Image();
@@ -57,7 +95,7 @@ export default function Home() {
     });
   }, []);
 
-  // Preload videos lightly (hinting)
+  // Hint-preload video files
   useEffect(() => {
     videoOrder.forEach((src) => {
       const link = document.createElement('link');
@@ -67,9 +105,7 @@ export default function Home() {
       document.head.appendChild(link);
     });
     return () => {
-      document
-        .querySelectorAll('link[rel="preload"][as="video"]')
-        .forEach((l) => l.remove());
+      document.querySelectorAll('link[rel="preload"][as="video"]').forEach((l) => l.remove());
     };
   }, []);
 
@@ -87,95 +123,87 @@ export default function Home() {
 
   const handleSectorClick = (sector) => {
     setActiveSector(sector);
-    setUserSelected(true); // stop auto-rotate once user interacts
+    setUserSelected(true);
   };
 
-  // Initialize the first video on mount
+  // Initialize first video
   useEffect(() => {
     const frontRef = front === 'A' ? vidARef.current : vidBRef.current;
     if (!frontRef) return;
-
-    // Set src and play the very first time
     frontRef.src = videoOrder[currentIndex];
-    const p = frontRef.play();
-    if (p?.catch) p.catch(() => {});
+    frontRef.currentTime = 0;
+    frontRef.play()?.catch(() => {});
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // run once
+  }, []); // once
 
-  // Helper to compute the subsequent index
-  const nextOf = (i) => (i + 1) % videoOrder.length;
-
-  // Timeupdate listener: prime & crossfade before the current ends
+  // Seamless cross-fade scheduler using rAF to monitor remaining time precisely
   useEffect(() => {
     const frontRef = front === 'A' ? vidARef.current : vidBRef.current;
     const backRef  = front === 'A' ? vidBRef.current : vidARef.current;
-
     if (!frontRef || !backRef) return;
 
     primedRef.current = false;
+    swapScheduledRef.current = false;
 
-    const onTimeUpdate = () => {
-      if (!frontRef.duration || Number.isNaN(frontRef.duration)) return;
+    const tick = async () => {
+      // Schedule next frame check
+      rafIdRef.current = requestAnimationFrame(tick);
+
+      // Need duration to compute remaining time
+      if (!frontRef.duration || isNaN(frontRef.duration)) return;
+
       const remaining = frontRef.duration - frontRef.currentTime;
 
-      // Prime the back buffer ~0.5s before the end
-      if (!primedRef.current && remaining <= 0.5) {
+      // Prime the next video slightly before end (load + first frame ready)
+      if (!primedRef.current && remaining <= Math.max(0.8, OVERLAP_SECONDS + 0.4)) {
         primedRef.current = true;
 
-        // Prepare nextIndex and back buffer source
-        const realNextIndex = nextIndex; // stable read
-        // Set the source only if it's different
-        if (backRef.src !== window.location.origin + videoOrder[realNextIndex]) {
-          backRef.src = videoOrder[realNextIndex];
+        // Prepare source and load
+        if (backRef.src !== (new URL(videoOrder[nextIndex], window.location.href)).href) {
+          backRef.src = videoOrder[nextIndex];
         }
+        backRef.preload = 'auto';
+        backRef.load();
+
+        // Ensure it's decodable & ready
+        await waitForCanPlay(backRef);
+
+        // Start hidden playback from 0 so a frame is ready
         backRef.currentTime = 0;
+        backRef.play()?.catch(() => {});
 
-        // Start playing the back buffer (hidden) so frames are ready
-        const p = backRef.play();
-        if (p?.catch) p.catch(() => {});
-
-        // Crossfade shortly after we know the back buffer has started
-        // Using a tiny timeout to ensure ready-to-render state
-        setTimeout(() => {
-          // Fade front out and back in via CSS classes (controlled by state)
-          setFront((prev) => (prev === 'A' ? 'B' : 'A'));
-
-          // Advance indices for the following cycle
-          setCurrentIndex((ci) => nextIndex);
-          setNextIndex((ni) => nextOf(ni));
-        }, 80);
+        // Ensure we've got the first decoded frame before swap
+        await waitForFirstFrame(backRef);
       }
-    };
 
-    // Also handle cases where 'ended' might fire unexpectedly
-    const onEnded = () => {
-      // As a fallback, do the same swap if not already primed
-      if (!primedRef.current) {
-        primedRef.current = true;
+      // With a frame decoded, schedule the overlap swap very near the end
+      if (primedRef.current && !swapScheduledRef.current && remaining <= OVERLAP_SECONDS) {
+        swapScheduledRef.current = true;
 
-        const backRef2  = front === 'A' ? vidBRef.current : vidARef.current;
-        if (backRef2) {
-          const realNextIndex = nextIndex;
-          if (backRef2.src !== window.location.origin + videoOrder[realNextIndex]) {
-            backRef2.src = videoOrder[realNextIndex];
-          }
-          backRef2.currentTime = 0;
-          const p = backRef2.play();
-          if (p?.catch) p.catch(() => {});
-        }
-
+        // Cross-fade: show back, then advance indices
         setFront((prev) => (prev === 'A' ? 'B' : 'A'));
-        setCurrentIndex((ci) => nextIndex);
+
+        // Immediately queue up next playlist pointers for the following cycle
+        setCurrentIndex(nextIndex);
+        setNextIndex((ni) => nextOf(ni));
+      }
+
+      // Fallback: if something goes wrong and we actually end, force swap
+      if (remaining <= 0.02 && !swapScheduledRef.current) {
+        swapScheduledRef.current = true;
+        // If backRef somehow isn't ready, try to start it now
+        if (backRef.paused) {
+          backRef.play()?.catch(() => {});
+        }
+        setFront((prev) => (prev === 'A' ? 'B' : 'A'));
+        setCurrentIndex(nextIndex);
         setNextIndex((ni) => nextOf(ni));
       }
     };
 
-    frontRef.addEventListener('timeupdate', onTimeUpdate);
-    frontRef.addEventListener('ended', onEnded);
-
+    rafIdRef.current = requestAnimationFrame(tick);
     return () => {
-      frontRef.removeEventListener('timeupdate', onTimeUpdate);
-      frontRef.removeEventListener('ended', onEnded);
+      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
     };
   }, [front, nextIndex]);
 
@@ -186,38 +214,42 @@ export default function Home() {
       {/* HERO: video + intro text + scroll arrow */}
       {/* offset content for fixed header (64px) + iOS safe area */}
       <main className="relative pt-[calc(64px+env(safe-area-inset-top))] md:pt-[calc(64px+env(safe-area-inset-top))] pb-16 min-h-screen w-full flex flex-col items-center overflow-hidden">
-        {/* Background videos (double-buffered) */}
+        {/* Double-buffered background videos */}
         <div className="absolute inset-0 z-0">
           {/* Video A */}
           <video
             ref={vidARef}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-200 ease-linear ${
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-150 ease-linear ${
               front === 'A' ? 'opacity-100' : 'opacity-0'
             }`}
             muted
             playsInline
             preload="auto"
-            disableRemotePlayback
+            disablePictureInPicture
+            controls={false}
             aria-hidden={front !== 'A'}
+            crossOrigin="anonymous"
           />
           {/* Video B */}
           <video
             ref={vidBRef}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-200 ease-linear ${
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-150 ease-linear ${
               front === 'B' ? 'opacity-100' : 'opacity-0'
             }`}
             muted
             playsInline
             preload="auto"
-            disableRemotePlayback
+            disablePictureInPicture
+            controls={false}
             aria-hidden={front !== 'B'}
+            crossOrigin="anonymous"
           />
         </div>
 
         {/* Dark gradient overlay for readability */}
         <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/80 via-black/45 to-black/0 pointer-events-none" />
 
-        {/* Intro content */}
+        {/* Intro content (added top margin as requested previously) */}
         <section className="relative z-20 w-full max-w-4xl mx-auto px-6 text-center mt-12 md:mt-16">
           <h1 className="font-semibold tracking-tight text-white text-3xl sm:text-4xl md:text-5xl leading-[1.1]">
             Welcome to Seville Investments
