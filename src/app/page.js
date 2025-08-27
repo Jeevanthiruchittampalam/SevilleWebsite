@@ -32,10 +32,19 @@ export default function Home() {
   const [activeSector, setActiveSector] = useState(sectors[0]);
   const [userSelected, setUserSelected] = useState(false);
 
-  // HERO video index
-  const [vidIndex, setVidIndex] = useState(0);
-  const videoRef = useRef(null);
-  const failSafeTimer = useRef(null);
+  // Indexes for the playlist
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [nextIndex, setNextIndex] = useState(1);
+
+  // Which video element is currently visible (front buffer): 'A' or 'B'
+  const [front, setFront] = useState('A');
+
+  // Refs to the two video elements
+  const vidARef = useRef(null);
+  const vidBRef = useRef(null);
+
+  // Whether we've already primed the next video for the current cycle
+  const primedRef = useRef(false);
 
   // Ref for the explore section (search + wheel)
   const exploreRef = useRef(null);
@@ -81,23 +90,94 @@ export default function Home() {
     setUserSelected(true); // stop auto-rotate once user interacts
   };
 
-  // HERO: fail-safe rotation in case "ended" doesn't fire
+  // Initialize the first video on mount
   useEffect(() => {
-    if (failSafeTimer.current) clearTimeout(failSafeTimer.current);
-    failSafeTimer.current = setTimeout(() => {
-      setVidIndex((i) => (i + 1) % videoOrder.length);
-    }, 12000);
-    return () => failSafeTimer.current && clearTimeout(failSafeTimer.current);
-  }, [vidIndex]);
+    const frontRef = front === 'A' ? vidARef.current : vidBRef.current;
+    if (!frontRef) return;
 
+    // Set src and play the very first time
+    frontRef.src = videoOrder[currentIndex];
+    const p = frontRef.play();
+    if (p?.catch) p.catch(() => {});
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // run once
+
+  // Helper to compute the subsequent index
+  const nextOf = (i) => (i + 1) % videoOrder.length;
+
+  // Timeupdate listener: prime & crossfade before the current ends
   useEffect(() => {
-    const v = videoRef.current;
-    if (v) {
-      v.load();
-      const p = v.play();
-      if (p && typeof p.catch === 'function') p.catch(() => {});
-    }
-  }, [vidIndex]);
+    const frontRef = front === 'A' ? vidARef.current : vidBRef.current;
+    const backRef  = front === 'A' ? vidBRef.current : vidARef.current;
+
+    if (!frontRef || !backRef) return;
+
+    primedRef.current = false;
+
+    const onTimeUpdate = () => {
+      if (!frontRef.duration || Number.isNaN(frontRef.duration)) return;
+      const remaining = frontRef.duration - frontRef.currentTime;
+
+      // Prime the back buffer ~0.5s before the end
+      if (!primedRef.current && remaining <= 0.5) {
+        primedRef.current = true;
+
+        // Prepare nextIndex and back buffer source
+        const realNextIndex = nextIndex; // stable read
+        // Set the source only if it's different
+        if (backRef.src !== window.location.origin + videoOrder[realNextIndex]) {
+          backRef.src = videoOrder[realNextIndex];
+        }
+        backRef.currentTime = 0;
+
+        // Start playing the back buffer (hidden) so frames are ready
+        const p = backRef.play();
+        if (p?.catch) p.catch(() => {});
+
+        // Crossfade shortly after we know the back buffer has started
+        // Using a tiny timeout to ensure ready-to-render state
+        setTimeout(() => {
+          // Fade front out and back in via CSS classes (controlled by state)
+          setFront((prev) => (prev === 'A' ? 'B' : 'A'));
+
+          // Advance indices for the following cycle
+          setCurrentIndex((ci) => nextIndex);
+          setNextIndex((ni) => nextOf(ni));
+        }, 80);
+      }
+    };
+
+    // Also handle cases where 'ended' might fire unexpectedly
+    const onEnded = () => {
+      // As a fallback, do the same swap if not already primed
+      if (!primedRef.current) {
+        primedRef.current = true;
+
+        const backRef2  = front === 'A' ? vidBRef.current : vidARef.current;
+        if (backRef2) {
+          const realNextIndex = nextIndex;
+          if (backRef2.src !== window.location.origin + videoOrder[realNextIndex]) {
+            backRef2.src = videoOrder[realNextIndex];
+          }
+          backRef2.currentTime = 0;
+          const p = backRef2.play();
+          if (p?.catch) p.catch(() => {});
+        }
+
+        setFront((prev) => (prev === 'A' ? 'B' : 'A'));
+        setCurrentIndex((ci) => nextIndex);
+        setNextIndex((ni) => nextOf(ni));
+      }
+    };
+
+    frontRef.addEventListener('timeupdate', onTimeUpdate);
+    frontRef.addEventListener('ended', onEnded);
+
+    return () => {
+      frontRef.removeEventListener('timeupdate', onTimeUpdate);
+      frontRef.removeEventListener('ended', onEnded);
+    };
+  }, [front, nextIndex]);
 
   return (
     <div className="flex flex-col min-h-screen text-white bg-black">
@@ -106,22 +186,36 @@ export default function Home() {
       {/* HERO: video + intro text + scroll arrow */}
       {/* offset content for fixed header (64px) + iOS safe area */}
       <main className="relative pt-[calc(64px+env(safe-area-inset-top))] md:pt-[calc(64px+env(safe-area-inset-top))] pb-16 min-h-screen w-full flex flex-col items-center overflow-hidden">
-        {/* Background video */}
-        <video
-          key={vidIndex}
-          ref={videoRef}
-          className="absolute inset-0 w-full h-full object-cover z-0"
-          autoPlay
-          muted
-          playsInline
-          onEnded={() => setVidIndex((i) => (i + 1) % videoOrder.length)}
-          preload="auto"
-        >
-          <source src={videoOrder[vidIndex]} type="video/mp4" />
-        </video>
+        {/* Background videos (double-buffered) */}
+        <div className="absolute inset-0 z-0">
+          {/* Video A */}
+          <video
+            ref={vidARef}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-200 ease-linear ${
+              front === 'A' ? 'opacity-100' : 'opacity-0'
+            }`}
+            muted
+            playsInline
+            preload="auto"
+            disableRemotePlayback
+            aria-hidden={front !== 'A'}
+          />
+          {/* Video B */}
+          <video
+            ref={vidBRef}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-200 ease-linear ${
+              front === 'B' ? 'opacity-100' : 'opacity-0'
+            }`}
+            muted
+            playsInline
+            preload="auto"
+            disableRemotePlayback
+            aria-hidden={front !== 'B'}
+          />
+        </div>
 
         {/* Dark gradient overlay for readability */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/80 via-black/45 to-black/0" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/80 via-black/45 to-black/0 pointer-events-none" />
 
         {/* Intro content */}
         <section className="relative z-20 w-full max-w-4xl mx-auto px-6 text-center mt-12 md:mt-16">
