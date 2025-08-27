@@ -8,7 +8,7 @@ export default function Footer() {
     { label: 'About Us', href: '/aboutus' },
     { label: 'Community', href: '/community' },
     { label: 'Promotions', href: '/promotions' },
-    { label: 'Rental Process', href: '/rentalprocess' },
+    // { label: 'Rental Process', href: '/rentalprocess' },
     { label: 'Press / Media', href: '/pressandmedia' },
     { label: 'Blog', href: '/blog' },
     { label: 'Careers', href: '/careers' },
@@ -111,8 +111,10 @@ export default function Footer() {
             </p>
             <p className="mt-2 text-zinc-400">
               Phone:{' '}
-              <a href="tel:+16048735753" className="hover:text-white transition">
-                (604) 873-5753
+              <a href="tel:+16042667162" className="hover:text-white transition">
+                (604) 266-7162
+
+                
               </a>
             </p>
             <p className="text-zinc-400">Province: British Columbia</p>

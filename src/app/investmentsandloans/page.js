@@ -52,7 +52,7 @@ export default function InvestmentsAndLoansPage() {
       <section className="relative -mt-16 pt-28 md:pt-36 pb-12 w-full overflow-hidden min-h-[50vh]">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/investmentspage1.jpg')" }}
+          style={{ backgroundImage: "url('/images/blackbuildings.jpg')" }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/50 to-black/15" />
         <div className="relative z-10 flex items-center justify-center h-full px-6">

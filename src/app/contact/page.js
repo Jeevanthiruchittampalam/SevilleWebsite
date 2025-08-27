@@ -41,8 +41,8 @@ export default function ContactPage() {
 
             <p>
               <span className="text-zinc-400">Phone:</span>{' '}
-              <a href="tel:+16048735753" className="underline decoration-white/30 hover:decoration-white">
-                (604) 873-5753
+              <a href="tel:+16042667162" className="underline decoration-white/30 hover:decoration-white">
+                (604) 266-7162
               </a>
             </p>
 
