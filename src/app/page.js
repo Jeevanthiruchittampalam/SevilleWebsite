@@ -20,12 +20,13 @@ const sectors = Object.keys(sectorBackgrounds);
 
 // Video rotation order (hero)
 const videoOrder = [
-  '/videos/PR1.mp4','/videos/PR2.mp4','/videos/PR3.mp4',
-  '/videos/DEV1.mp4','/videos/DEV2.mp4','/videos/DEV3.mp4',
-  '/videos/T1.mp4','/videos/T2.mp4','/videos/T3.mp4',
-  '/videos/AM1.mp4','/videos/AM2.mp4','/videos/AM3.mp4',
-  '/videos/IAL1.mp4','/videos/IAL2.mp4','/videos/IAL3.mp4',
-  '/videos/OI1.mp4','/videos/OI2.mp4','/videos/OI3.mp4',
+  // '/videos/PR1.mp4',
+  '/videos/AM2.mp4','/videos/van1.mp4','/videos/OI2.mp4','/videos/OI3.mp4',
+  '/videos/PR2.mp4','/videos/PR3.mp4',
+  '/videos/DEV1.mp4',
+  '/videos/AM1.mp4','/videos/AM3.mp4',
+  '/videos/IAL3.mp4','/videos/beach1.mp4',
+  
 ];
 
 // ===== helpers for truly seamless swap =====

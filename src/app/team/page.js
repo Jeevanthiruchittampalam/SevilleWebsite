@@ -34,7 +34,7 @@ const propertyManagers = [
   { name: 'Analyn Espiritu', title: 'Property Manager', email: 'analyn@sevilleinvestments.ca' },
   { name: 'Marie Bautista', title: 'Property Manager', email: 'marie@sevilleinvestments.ca' },
   { name: 'Punam Mainali', title: 'Property Manager', email: '' },
-  { name: 'Makunda Mainali', title: 'Property Manager', email: '' },
+  // { name: 'Makunda Mainali', title: 'Property Manager', email: '' },
 ];
 
 const adminAndRM = [
